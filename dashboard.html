@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Global Trust Fund</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #07111F;
+      color: #FFFFFF;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0D1B2A;
+      border-bottom: 1px solid #203246;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #D4AF37;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logout {
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid #D4AF37;
+      border-radius: 7px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .logout:hover {
+      background: #D4AF37;
+      color: #07111F;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 35px 20px;
+    }
+
+    .welcome {
+      margin-bottom: 28px;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #B8C4D4;
+    }
+
+    .balance-card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    .balance-label {
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .balance {
+      color: #D4AF37;
+      font-size: 42px;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 21px;
+    }
+
+    .activity {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 20px;
+      color: #B8C4D4;
+    }
+
+    .withdraw-card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .withdraw-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .withdraw-option {
+      flex: 1;
+      padding: 13px;
+      background: #07111F;
+      color: #FFFFFF;
+      border: 1px solid #203246;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .withdraw-option.active,
+    .withdraw-option:hover {
+      border-color: #D4AF37;
+      color: #D4AF37;
+    }
+
+    .withdraw-form {
+      display: none;
+    }
+
+    .withdraw-form.active {
+      display: block;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
+      display: block;
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px;
+      background: #07111F;
+      color: #FFFFFF;
+      border: 1px solid #203246;
+      border-radius: 7px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #D4AF37;
+    }
+
+    .submit-withdraw {
+      width: 100%;
+      padding: 13px;
+      background: #D4AF37;
+      color: #07111F;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .submit-withdraw:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 700px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .balance {
+        font-size: 34px;
+      }
+
+      .withdraw-options {
+        flex-direction: column;
+      }
+    }
+  </style></head><body>  <header>
+    <div class="logo">Global Trust Fund</div>
+    <button class="logout" onclick="logout()">Logout</button>
+  </header>  <main class="container"><div class="welcome">
+  <h1>Welcome, <span id="userName">User</span></h1>
+  <p>Here's an overview of your account.</p>
+</div>
+
+<div class="balance-card">
+  <div class="balance-label">Account Balance</div>
+  <div class="balance">$14,000.00</div>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <h3>Account Status</h3>
+    <p>Active</p>
+  </div>
+
+  <div class="card">
+    <h3>Investment Plan</h3>
+    <p>Standard</p>
+  </div>
+
+  <div class="card">
+    <h3>Account Currency</h3>
+    <p>USD</p>
+  </div>
+
+</div>
+
+<div class="section">
+  <h2>Withdraw</h2>
+
+  <div class="withdraw-card">
+
+    <div class="withdraw-options">
+      <button class="withdraw-option" onclick="showForm('bank', this)">
+        Bank Transfer
+      </button>
+
+      <button class="withdraw-option" onclick="showForm('wallet', this)">
+        Crypto Wallet
+      </button>
+    </div>
+
+    <form id="bankForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+      <div class="field">
+        <label for="bankName">Bank Name</label>
+        <input type="text" id="bankName" placeholder="Enter bank name">
+      </div>
+
+      <div class="field">
+        <label for="accountName">Account Name</label>
+        <input type="text" id="accountName" placeholder="Enter account name">
+      </div>
+
+      <div class="field">
+        <label for="accountNumber">Account Number</label>
+        <input type="text" id="accountNumber" placeholder="Enter account number">
+      </div>
+
+      <button class="submit-withdraw" type="submit">
+        Submit Withdrawal Request
+      </button>
+    </form>
+
+    <form id="walletForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+      <div class="field">
+        <label for="network">Network</label>
+        <select id="network">
+          <option value="">Select network</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="bitcoin">Bitcoin</option>
+          <option value="tron">TRON</option>
+          <option value="bsc">BNB Smart Chain</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="walletAddress">Wallet Address</label>
+        <input type="text" id="walletAddress" placeholder="Enter wallet address">
+      </div>
+
+      <button class="submit-withdraw" type="submit">
+        Submit Withdrawal Request
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<div class="section">
+  <h2>Recent Activity</h2>
+
+  <div class="activity">
+    No recent activity to display.
+  </div>
+</div>
+
+  </main>  <script>
+    const loggedIn = localStorage.getItem("gtf_logged_in");
+
+    if (loggedIn !== "true") {
+      window.location.href = "login.html";
+    }
+
+    const userName = localStorage.getItem("gtf_user_name");
+
+    if (userName) {
+      document.getElementById("userName").textContent = userName;
+    }
+
+    function logout() {
+      localStorage.removeItem("gtf_logged_in");
+      window.location.href = "login.html";
+    }
+
+    function showForm(type, button) {
+      document.getElementById("bankForm").classList.remove("active");
+      document.getElementById("walletForm").classList.remove("active");
+
+      document.querySelectorAll(".withdraw-option").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      if (type === "bank") {
+        document.getElementById("bankForm").classList.add("active");
+      }
+
+      if (type === "wallet") {
+        document.getElementById("walletForm").classList.add("active");
+      }
+
+      button.classList.add("active");
+    }
+
+    function handleWithdraw(event) {
+      event.preventDefault();
+      alert("Your withdrawal request was not submitted.");
+      return false;
+    }
+  </script></body>
+</html>

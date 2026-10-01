@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Global Trust Fund</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #07111F;
+      color: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo h1 {
+      color: #D4AF37;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .logo p {
+      color: #B8C4D4;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 14px;
+      padding: 35px 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 25px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #DCE5EF;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #30445A;
+      border-radius: 8px;
+      background: #07111F;
+      color: #FFFFFF;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #D4AF37;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #D4AF37;
+      color: #07111F;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 22px;
+      color: #B8C4D4;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-home a {
+      color: #B8C4D4;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .back-home a:hover {
+      color: #D4AF37;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      <h1>Global Trust Fund</h1>
+      <p>Build Your Financial Future With Confidence</p>
+    </div>
+
+    <div class="card">
+
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to access your account</p>
+
+      <form onsubmit="loginUser(event)">
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit">Login</button>
+
+      </form>
+
+      <div class="register-link">
+        Don't have an account?
+        <a href="register.html">Create Account</a>
+      </div>
+
+    </div>
+
+    <div class="back-home">
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+  </div>
+
+  <script>
+    function loginUser(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const registered = localStorage.getItem("gtf_registered");
+      const savedEmail = localStorage.getItem("gtf_user_email");
+
+      if (!registered || email !== savedEmail) {
+        alert("No registered account was found with this email address.");
+        return;
+      }
+
+      localStorage.setItem("gtf_logged_in", "true");
+      window.location.href = "dashboard.html";
+    }
+  </script>
+
+</body>
+</html>
