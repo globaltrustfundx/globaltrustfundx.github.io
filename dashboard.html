@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Global Trust Fund</title>  <style>
+  <title>Dashboard | Global Trust Fund</title>
+
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -220,122 +223,157 @@
         flex-direction: column;
       }
     }
-  </style></head><body>  <header>
+  </style>
+</head>
+
+<body>
+
+  <header>
     <div class="logo">Global Trust Fund</div>
     <button class="logout" onclick="logout()">Logout</button>
-  </header>  <main class="container"><div class="welcome">
-  <h1>Welcome, <span id="userName">User</span></h1>
-  <p>Here's an overview of your account.</p>
-</div>
+  </header>
 
-<div class="balance-card">
-  <div class="balance-label">Account Balance</div>
-  <div class="balance">$14,000.00</div>
-</div>
+  <main class="container">
 
-<div class="cards">
-
-  <div class="card">
-    <h3>Account Status</h3>
-    <p>Active</p>
-  </div>
-
-  <div class="card">
-    <h3>Investment Plan</h3>
-    <p>Standard</p>
-  </div>
-
-  <div class="card">
-    <h3>Account Currency</h3>
-    <p>USD</p>
-  </div>
-
-</div>
-
-<div class="section">
-  <h2>Withdraw</h2>
-
-  <div class="withdraw-card">
-
-    <div class="withdraw-options">
-      <button class="withdraw-option" onclick="showForm('bank', this)">
-        Bank Transfer
-      </button>
-
-      <button class="withdraw-option" onclick="showForm('wallet', this)">
-        Crypto Wallet
-      </button>
+    <div class="welcome">
+      <h1>Welcome, <span id="userName">User</span></h1>
+      <p>Here's an overview of your account.</p>
     </div>
 
-    <form id="bankForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
-      <div class="field">
-        <label for="bankName">Bank Name</label>
-        <input type="text" id="bankName" placeholder="Enter bank name">
+    <div class="balance-card">
+      <div class="balance-label">Account Balance</div>
+      <div class="balance">$14,000.00</div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Account Status</h3>
+        <p>Active</p>
       </div>
 
-      <div class="field">
-        <label for="accountName">Account Name</label>
-        <input type="text" id="accountName" placeholder="Enter account name">
+      <div class="card">
+        <h3>Investment Plan</h3>
+        <p>Standard</p>
       </div>
 
-      <div class="field">
-        <label for="accountNumber">Account Number</label>
-        <input type="text" id="accountNumber" placeholder="Enter account number">
+      <div class="card">
+        <h3>Account Currency</h3>
+        <p>USD</p>
       </div>
 
-      <button class="submit-withdraw" type="submit">
-        Submit Withdrawal Request
-      </button>
-    </form>
+    </div>
 
-    <form id="walletForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
-      <div class="field">
-        <label for="network">Network</label>
-        <select id="network">
-          <option value="">Select network</option>
-          <option value="ethereum">Ethereum</option>
-          <option value="bitcoin">Bitcoin</option>
-          <option value="tron">TRON</option>
-          <option value="bsc">BNB Smart Chain</option>
-        </select>
+    <div class="section">
+      <h2>Withdraw</h2>
+
+      <div class="withdraw-card">
+
+        <div class="withdraw-options">
+          <button class="withdraw-option" onclick="showForm('bank', this)">
+            Bank Transfer
+          </button>
+
+          <button class="withdraw-option" onclick="showForm('wallet', this)">
+            Crypto Wallet
+          </button>
+        </div>
+
+        <form id="bankForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+          <div class="field">
+            <label for="bankName">Bank Name</label>
+            <input type="text" id="bankName" placeholder="Enter bank name">
+          </div>
+
+          <div class="field">
+            <label for="accountName">Account Name</label>
+            <input type="text" id="accountName" placeholder="Enter account name">
+          </div>
+
+          <div class="field">
+            <label for="accountNumber">Account Number</label>
+            <input type="text" id="accountNumber" placeholder="Enter account number">
+          </div>
+
+          <button class="submit-withdraw" type="submit">
+            Submit Withdrawal Request
+          </button>
+        </form>
+
+        <form id="walletForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+          <div class="field">
+            <label for="network">Network</label>
+            <select id="network">
+              <option value="">Select network</option>
+              <option value="ethereum">Ethereum</option>
+              <option value="bitcoin">Bitcoin</option>
+              <option value="tron">TRON</option>
+              <option value="bsc">BNB Smart Chain</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="walletAddress">Wallet Address</label>
+            <input type="text" id="walletAddress" placeholder="Enter wallet address">
+          </div>
+
+          <button class="submit-withdraw" type="submit">
+            Submit Withdrawal Request
+          </button>
+        </form>
+
       </div>
+    </div>
 
-      <div class="field">
-        <label for="walletAddress">Wallet Address</label>
-        <input type="text" id="walletAddress" placeholder="Enter wallet address">
+    <div class="section">
+      <h2>Recent Activity</h2>
+
+      <div class="activity">
+        No recent activity to display.
       </div>
+    </div>
 
-      <button class="submit-withdraw" type="submit">
-        Submit Withdrawal Request
-      </button>
-    </form>
+  </main>
 
-  </div>
-</div>
+  <!-- Supabase library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<div class="section">
-  <h2>Recent Activity</h2>
+  <script>
+    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
 
-  <div class="activity">
-    No recent activity to display.
-  </div>
-</div>
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
-  </main>  <script>
-    const loggedIn = localStorage.getItem("gtf_logged_in");
+    async function checkUser() {
+      const {
+        data: { user },
+        error
+      } = await supabaseClient.auth.getUser();
 
-    if (loggedIn !== "true") {
-      window.location.href = "login.html";
-    }
+      if (error || !user) {
+        window.location.href = "login.html";
+        return;
+      }
 
-    const userName = localStorage.getItem("gtf_user_name");
+      const userName =
+        user.user_metadata?.full_name ||
+        user.email?.split("@")[0] ||
+        "User";
 
-    if (userName) {
       document.getElementById("userName").textContent = userName;
     }
 
-    function logout() {
-      localStorage.removeItem("gtf_logged_in");
+    async function logout() {
+      const { error } = await supabaseClient.auth.signOut();
+
+      if (error) {
+        alert("Unable to log out. Please try again.");
+        return;
+      }
+
       window.location.href = "login.html";
     }
 
@@ -363,5 +401,9 @@
       alert("Your withdrawal request was not submitted.");
       return false;
     }
-  </script></body>
+
+    checkUser();
+  </script>
+
+</body>
 </html>
