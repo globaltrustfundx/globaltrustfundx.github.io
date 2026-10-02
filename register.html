@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account | Global Trust Fund</title>
+  <title>Register | Global Trust Fund</title>
 
   <style>
     * {
@@ -20,91 +20,76 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px 20px;
+      padding: 20px;
     }
 
-    .container {
+    .register-container {
       width: 100%;
       max-width: 460px;
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 14px;
+      padding: 35px;
     }
 
     .logo {
       text-align: center;
+      color: #D4AF37;
+      font-size: 24px;
+      font-weight: bold;
       margin-bottom: 25px;
     }
 
-    .logo h1 {
-      color: #D4AF37;
-      font-size: 28px;
-      margin-bottom: 6px;
-    }
-
-    .logo p {
-      color: #B8C4D4;
-      font-size: 14px;
-    }
-
-    .card {
-      background: #0D1B2A;
-      border: 1px solid #203246;
-      border-radius: 14px;
-      padding: 35px 30px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h2 {
+    h1 {
       text-align: center;
+      font-size: 28px;
       margin-bottom: 8px;
-      font-size: 25px;
     }
 
     .subtitle {
       text-align: center;
       color: #B8C4D4;
-      font-size: 14px;
       margin-bottom: 28px;
     }
 
-    .form-group {
+    .field {
       margin-bottom: 18px;
     }
 
-    label {
+    .field label {
       display: block;
-      margin-bottom: 7px;
-      color: #DCE5EF;
+      color: #B8C4D4;
       font-size: 14px;
+      margin-bottom: 7px;
     }
 
-    input {
+    .field input {
       width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #30445A;
-      border-radius: 8px;
+      padding: 13px;
       background: #07111F;
       color: #FFFFFF;
-      font-size: 15px;
+      border: 1px solid #203246;
+      border-radius: 7px;
       outline: none;
     }
 
-    input:focus {
+    .field input:focus {
       border-color: #D4AF37;
     }
 
-    button {
+    .register-button {
       width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
+      padding: 13px;
       background: #D4AF37;
       color: #07111F;
-      font-size: 16px;
-      font-weight: bold;
+      border: none;
+      border-radius: 7px;
       cursor: pointer;
-      margin-top: 8px;
+      font-weight: bold;
+      margin-top: 5px;
     }
 
-    button:hover {
+    .register-button:hover {
       opacity: 0.9;
     }
 
@@ -112,7 +97,6 @@
       text-align: center;
       margin-top: 22px;
       color: #B8C4D4;
-      font-size: 14px;
     }
 
     .login-link a {
@@ -121,92 +105,96 @@
       font-weight: bold;
     }
 
-    .notice {
-      margin-top: 22px;
-      padding: 12px;
-      border-radius: 8px;
-      background: rgba(46, 139, 112, 0.12);
-      border: 1px solid rgba(46, 139, 112, 0.35);
-      color: #B8C4D4;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
-    }
-
     .back-home {
+      display: block;
       text-align: center;
-      margin-top: 20px;
-    }
-
-    .back-home a {
+      margin-top: 18px;
       color: #B8C4D4;
       text-decoration: none;
-      font-size: 13px;
-    }
-
-    .back-home a:hover {
-      color: #D4AF37;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="register-container">
 
-    <div class="logo">
-      <h1>Global Trust Fund</h1>
-      <p>Build Your Financial Future With Confidence</p>
-    </div>
+    <div class="logo">Global Trust Fund</div>
 
-    <div class="card">
+    <h1>Create Your Account</h1>
+    <p class="subtitle">Register to access your account.</p>
 
-      <h2>Create Your Account</h2>
-      <p class="subtitle">Register to continue to your account</p>
+    <form onsubmit="registerUser(event)">
 
-      <form onsubmit="registerUser(event)">
-
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="Enter your full name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="Enter your email address" required>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Create a password" required minlength="6">
-        </div>
-
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" placeholder="Confirm your password" required minlength="6">
-        </div>
-
-        <button type="submit">Create Account</button>
-
-      </form>
-
-      <div class="login-link">
-        Already have an account?
-        <a href="login.html">Login</a>
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your full name"
+          required
+        >
       </div>
 
-      
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        >
+      </div>
 
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Create a password"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        >
+      </div>
+
+      <button class="register-button" type="submit">
+        Create Account
+      </button>
+
+    </form>
+
+    <div class="login-link">
+      Already have an account?
+      <a href="login.html">Login</a>
     </div>
 
-    <div class="back-home">
-      <a href="index.html">← Back to Home</a>
-    </div>
+    <a class="back-home" href="index.html">← Back to Home</a>
 
   </div>
 
+  <!-- Supabase library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    function registerUser(event) {
+    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    async function registerUser(event) {
       event.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -219,68 +207,38 @@
         return;
       }
 
-      localStorage.setItem("gtf_registered", "true");
-      localStorage.setItem("gtf_user_name", name);
-      localStorage.setItem("gtf_user_email", email);
+      const button = event.target.querySelector("button[type='submit']");
 
-      alert("Account created successfully.");
-      window.location.href = "login.html";
+      button.disabled = true;
+      button.textContent = "Creating Account...";
+
+      const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            full_name: name
+          },
+          emailRedirectTo: "https://globaltrustfundx.github.io/login.html"
+        }
+      });
+
+      if (error) {
+        alert(error.message);
+        button.disabled = false;
+        button.textContent = "Create Account";
+        return;
+      }
+
+      if (data.user) {
+        alert(
+          "Account created successfully. Please check your email and confirm your account before logging in."
+        );
+
+        window.location.href = "login.html";
+      }
     }
   </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-  const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
-
-  const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-  async function registerUser(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    const button = event.target.querySelector("button[type='submit']");
-    button.disabled = true;
-    button.textContent = "Creating Account...";
-
-    const { data, error } = await supabaseClient.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          full_name: name
-        },
-        emailRedirectTo: "https://globaltrustfundx.github.io/login.html"
-      }
-    });
-
-    if (error) {
-      alert(error.message);
-      button.disabled = false;
-      button.textContent = "Create Account";
-      return;
-    }
-
-    if (data.user) {
-      alert(
-        "Account created successfully. Please check your email and confirm your account before logging in."
-      );
-
-      window.location.href = "login.html";
-    }
-  }
-</script>
+</body>
 </html>
