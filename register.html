@@ -228,5 +228,59 @@
     }
   </script>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  async function registerUser(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    const button = event.target.querySelector("button[type='submit']");
+    button.disabled = true;
+    button.textContent = "Creating Account...";
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          full_name: name
+        },
+        emailRedirectTo: "https://globaltrustfundx.github.io/login.html"
+      }
+    });
+
+    if (error) {
+      alert(error.message);
+      button.disabled = false;
+      button.textContent = "Create Account";
+      return;
+    }
+
+    if (data.user) {
+      alert(
+        "Account created successfully. Please check your email and confirm your account before logging in."
+      );
+
+      window.location.href = "login.html";
+    }
+  }
+</script>
 </html>
