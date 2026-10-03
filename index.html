@@ -3,20 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Global Trust Fund</title>
 
-  <style>
-    :root {
-      --navy: #07111F;
-      --navy-light: #0D1B2A;
-      --gold: #D4AF37;
-      --green: #2E8B70;
-      --white: #FFFFFF;
-      --gray: #B8C4D4;
-      --border: rgba(255,255,255,0.10);
-      --card: rgba(255,255,255,0.045);
-    }
+  <meta name="description" content="Global Trust Fund — Explore investment options, account services, and financial information. Investment involves risk.">
+  <meta name="theme-color" content="#07152d">
 
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,8 +22,8 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--navy);
-      color: var(--white);
+      background: #07152d;
+      color: #ffffff;
       line-height: 1.6;
     }
 
@@ -39,22 +32,30 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+    }
+
     .container {
-      width: min(1120px, 92%);
+      width: 90%;
+      max-width: 1150px;
       margin: auto;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================== */
+
     header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(7,17,31,0.96);
-      padding: 20px 0;
+      background: #07152d;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      padding: 12px 0;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .logo {
@@ -69,334 +70,373 @@
       display: block;
     }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      border: 0;
-      border-radius: 9px;
-      padding: 14px 23px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .25s ease;
-    }
+    /* =========================
+       HERO
+    ========================== */
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-gold {
-      background: var(--gold);
-      color: #07111F;
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--white);
-      background: transparent;
-    }
-
-    .btn-green {
-      background: var(--green);
-      color: var(--white);
-    }
-
-    /* HERO */
     .hero {
-      padding: 115px 0 95px;
+      padding: 110px 0 100px;
       text-align: center;
       background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(212,175,55,0.13),
-          transparent 38%
-        ),
-        var(--navy);
-    }
-
-    .hero-label {
-      display: inline-block;
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+        linear-gradient(
+          rgba(7, 21, 45, 0.92),
+          rgba(7, 21, 45, 0.97)
+        );
     }
 
     .hero h1 {
-      max-width: 850px;
-      margin: auto;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.04;
-      letter-spacing: -2.5px;
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
     }
 
     .hero h1 span {
-      color: var(--gold);
+      color: #d4af37;
     }
 
     .hero p {
-      max-width: 720px;
-      margin: 28px auto 38px;
-      color: var(--gray);
+      max-width: 760px;
+      margin: 0 auto 35px;
+      color: #c9d2df;
       font-size: 18px;
-      line-height: 1.8;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       justify-content: center;
+      gap: 15px;
       flex-wrap: wrap;
-      gap: 14px;
     }
 
-    /* GENERAL SECTIONS */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #d4af37;
+      color: #07152d;
+    }
+
+    .btn-primary:hover {
+      background: #f0cf62;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: #d4af37;
+      color: #07152d;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================== */
+
     section {
-      padding: 90px 0;
+      padding: 85px 0;
     }
 
     .section-heading {
       text-align: center;
-      max-width: 720px;
-      margin: 0 auto 48px;
+      margin-bottom: 50px;
     }
 
     .section-heading h2 {
-      font-size: clamp(30px, 5vw, 45px);
-      margin-bottom: 15px;
-      letter-spacing: -1px;
+      font-size: 38px;
+      margin-bottom: 12px;
     }
 
     .section-heading p {
-      color: var(--gray);
+      color: #aeb9c9;
+      max-width: 700px;
+      margin: auto;
     }
 
-    /* PLANS */
+    /* =========================
+       INVESTMENT PLANS
+    ========================== */
+
     .plans {
-      background: #091522;
+      background: #091b38;
     }
 
     .plan-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 20px;
     }
 
     .plan-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      padding: 30px;
-      transition: .25s ease;
+      background: #0d2346;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 10px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: 0.25s ease;
     }
 
     .plan-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(212,175,55,.45);
-    }
-
-    .plan-card.featured {
-      border-color: rgba(212,175,55,.55);
-      box-shadow: 0 15px 45px rgba(0,0,0,.22);
+      border-color: #d4af37;
     }
 
     .plan-card h3 {
-      font-size: 22px;
+      color: #d4af37;
+      font-size: 23px;
       margin-bottom: 12px;
     }
 
-    .plan-price {
-      font-size: 34px;
-      font-weight: 800;
-      color: var(--gold);
+    .plan-amount {
+      font-size: 30px;
+      font-weight: bold;
       margin-bottom: 15px;
     }
 
     .plan-card p {
-      color: var(--gray);
-      min-height: 78px;
-      margin-bottom: 22px;
-    }
-
-    .plan-detail {
+      color: #bdc8d7;
       font-size: 14px;
-      color: var(--gray);
-      margin-bottom: 20px;
     }
 
-    .plan-card .btn {
-      width: 100%;
+    .plan-note {
       text-align: center;
+      color: #8f9caf;
+      margin-top: 30px;
+      font-size: 13px;
     }
 
-    /* FEATURES */
+    /* =========================
+       FEATURES
+    ========================== */
+
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
     }
 
     .feature-card {
+      background: #0b1d3a;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
       padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: var(--card);
     }
 
-    .feature-icon {
-      width: 45px;
-      height: 45px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: rgba(212,175,55,.12);
-      color: var(--gold);
-      font-weight: 800;
+    .feature-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212, 175, 55, 0.12);
+      color: #d4af37;
+      font-size: 21px;
       margin-bottom: 20px;
     }
 
     .feature-card h3 {
       margin-bottom: 10px;
+      font-size: 21px;
     }
 
     .feature-card p {
-      color: var(--gray);
+      color: #aeb9c9;
+      font-size: 15px;
     }
 
-    /* STEPS */
+    /* =========================
+       HOW IT WORKS
+    ========================== */
+
     .steps {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
     }
 
     .step {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: var(--card);
+      text-align: center;
+      padding: 25px;
     }
 
     .step-number {
-      color: var(--gold);
-      font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 18px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #d4af37;
+      color: #07152d;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .step h3 {
       margin-bottom: 10px;
-      font-size: 18px;
     }
 
     .step p {
-      color: var(--gray);
+      color: #aeb9c9;
       font-size: 15px;
     }
 
-    /* TRUST */
+    /* =========================
+       TRUST
+    ========================== */
+
     .trust {
-      background: #091522;
+      background: #091b38;
     }
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
     }
 
     .trust-card {
       padding: 30px;
-      border-left: 3px solid var(--green);
-      background: var(--card);
-      border-radius: 0 13px 13px 0;
+      background: #0d2346;
+      border-radius: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.18);
     }
 
     .trust-card h3 {
-      margin-bottom: 10px;
+      color: #d4af37;
+      margin-bottom: 12px;
     }
 
     .trust-card p {
-      color: var(--gray);
+      color: #b9c4d3;
+      font-size: 15px;
     }
 
-    /* FAQ */
+    /* =========================
+       FAQ
+    ========================== */
+
     .faq {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
     }
 
-    details {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      background: var(--card);
-      overflow: hidden;
+    .faq-item {
+      background: #0b1d3a;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 15px;
     }
 
-    summary {
-      cursor: pointer;
-      padding: 20px;
-      font-weight: 700;
+    .faq-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #ffffff;
     }
 
-    details p {
-      padding: 0 20px 20px;
-      color: var(--gray);
+    .faq-item p {
+      color: #aeb9c9;
+      font-size: 15px;
     }
 
-    /* CTA */
+    /* =========================
+       CTA
+    ========================== */
+
     .cta {
       text-align: center;
       background:
-        radial-gradient(
-          circle at center,
-          rgba(46,139,112,.15),
-          transparent 50%
-        ),
-        var(--navy);
+        linear-gradient(
+          rgba(7, 21, 45, 0.95),
+          rgba(7, 21, 45, 0.95)
+        );
     }
 
     .cta h2 {
-      font-size: clamp(32px, 5vw, 50px);
-      margin-bottom: 16px;
+      font-size: 40px;
+      margin-bottom: 15px;
     }
 
     .cta p {
-      color: var(--gray);
-      margin-bottom: 30px;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      color: #b8c2d1;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================== */
+
     footer {
-      border-top: 1px solid var(--border);
-      padding: 35px 0;
-      text-align: center;
-      color: var(--gray);
+      background: #050f20;
+      padding: 45px 0 25px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      color: #d4af37;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #aeb9c9;
       font-size: 14px;
     }
 
-    .footer-note {
-      margin-top: 12px;
-      font-size: 12px;
-      opacity: .75;
+    .footer-links a:hover {
+      color: #d4af37;
     }
 
-    .footer-note a {
-      transition: .2s ease;
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: #78869a;
+      font-size: 13px;
     }
 
-    .footer-note a:hover {
-      color: var(--gold);
-    }
+    /* =========================
+       MOBILE
+    ========================== */
 
-    /* RESPONSIVE */
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
       .plan-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .steps {
+      .feature-grid,
+      .steps,
+      .trust-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -406,17 +446,34 @@
         padding: 15px 0;
       }
 
+      .nav {
+        justify-content: center;
+      }
+
       .logo img {
-        height: 48px;
-        max-width: 190px;
+        height: 65px;
+        max-width: 250px;
       }
 
       .hero {
         padding: 80px 0 70px;
       }
 
+      .hero h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
       section {
         padding: 70px 0;
+      }
+
+      .section-heading h2 {
+        font-size: 31px;
       }
 
       .plan-grid,
@@ -426,8 +483,21 @@
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        letter-spacing: -1.5px;
+      .plan-card {
+        padding: 28px 20px;
+      }
+
+      .cta h2 {
+        font-size: 32px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
       }
     }
   </style>
@@ -435,485 +505,498 @@
 
 <body>
 
-<!-- TOP LOGO ONLY -->
-<header>
-  <div class="container nav">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Global Trust Fund">
-    </a>
-  </div>
-</header>
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-<main>
+  <header>
+    <div class="container nav">
 
-  <!-- HERO -->
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global Trust Fund">
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
   <section class="hero">
     <div class="container">
 
-      <div class="hero-label">
-        Global Trust Fund
-      </div>
-
       <h1>
-        Build Your Financial Future With
-        <span>Confidence</span>
+        Grow Your Financial
+        <span>Future</span>
       </h1>
 
       <p>
-        Explore a modern investment experience designed to help you manage
-        your financial journey, monitor your portfolio, and stay informed
-        about your investment goals.
+        Explore investment opportunities and manage your financial goals
+        through Global Trust Fund.
       </p>
 
-      <div class="hero-actions">
-        <a href="register.html" class="btn btn-gold">
+      <div class="hero-buttons">
+
+        <a href="register.html" class="btn btn-primary">
           Create Account
         </a>
 
         <a href="login.html" class="btn btn-outline">
           Login
         </a>
+
       </div>
 
     </div>
   </section>
 
 
-  <!-- INVESTMENT PLANS -->
-  <section class="plans">
+  <!-- =========================
+       INVESTMENT PLANS
+  ========================== -->
+
+  <section class="plans" id="plans">
+
     <div class="container">
 
       <div class="section-heading">
+
         <h2>Investment Plans</h2>
 
         <p>
-          Choose an investment level that fits your financial goals.
-          Review applicable terms, fees, risks, and conditions before
-          selecting a plan.
+          Choose an investment amount that fits your financial goals.
+          Review all applicable terms, fees, risks, and conditions before
+          making an investment decision.
         </p>
+
       </div>
+
 
       <div class="plan-grid">
 
         <div class="plan-card">
-          <h3>$100 Plan</h3>
-
-          <div class="plan-price">
-            $100
-          </div>
-
+          <h3>Starter</h3>
+          <div class="plan-amount">$100</div>
           <p>
-            A starting option for investors beginning their financial journey.
+            Starting investment amount for users exploring the platform.
           </p>
-
-          <div class="plan-detail">
-            Starting Investment: $100
-          </div>
-
-          <a href="register.html" class="btn btn-outline">
-            Select Plan
-          </a>
         </div>
 
 
         <div class="plan-card">
-          <h3>$250 Plan</h3>
-
-          <div class="plan-price">
-            $250
-          </div>
-
+          <h3>Basic</h3>
+          <div class="plan-amount">$250</div>
           <p>
-            An option for investors looking to increase their planned allocation.
+            An option for users looking to increase their investment amount.
           </p>
-
-          <div class="plan-detail">
-            Starting Investment: $250
-          </div>
-
-          <a href="register.html" class="btn btn-outline">
-            Select Plan
-          </a>
         </div>
 
 
         <div class="plan-card">
-          <h3>$500 Plan</h3>
-
-          <div class="plan-price">
-            $500
-          </div>
-
+          <h3>Growth</h3>
+          <div class="plan-amount">$500</div>
           <p>
-            An investment option for a larger planned allocation.
+            Designed for users considering a larger investment allocation.
           </p>
-
-          <div class="plan-detail">
-            Starting Investment: $500
-          </div>
-
-          <a href="register.html" class="btn btn-outline">
-            Select Plan
-          </a>
         </div>
 
 
         <div class="plan-card">
-          <h3>$750 Plan</h3>
-
-          <div class="plan-price">
-            $750
-          </div>
-
+          <h3>Premium</h3>
+          <div class="plan-amount">$750</div>
           <p>
-            An option for investors seeking a higher planned allocation.
+            A higher investment option subject to applicable terms and risks.
           </p>
-
-          <div class="plan-detail">
-            Starting Investment: $750
-          </div>
-
-          <a href="register.html" class="btn btn-outline">
-            Select Plan
-          </a>
         </div>
 
 
-        <div class="plan-card featured">
-          <h3>$1,000 Plan</h3>
-
-          <div class="plan-price">
-            $1,000
-          </div>
-
+        <div class="plan-card">
+          <h3>Professional</h3>
+          <div class="plan-amount">$1,000</div>
           <p>
-            A higher investment level for investors with a larger planned allocation.
+            A larger starting investment amount for eligible users.
           </p>
-
-          <div class="plan-detail">
-            Starting Investment: $1,000
-          </div>
-
-          <a href="register.html" class="btn btn-green">
-            Select Plan
-          </a>
         </div>
 
       </div>
+
+
+      <p class="plan-note">
+        Investment involves risk. The value of investments may increase or
+        decrease, and past performance does not guarantee future results.
+      </p>
+
     </div>
+
   </section>
 
 
-  <!-- WHY CHOOSE US -->
+  <!-- =========================
+       WHY CHOOSE US
+  ========================== -->
+
   <section>
+
     <div class="container">
 
       <div class="section-heading">
+
         <h2>Why Choose Global Trust Fund?</h2>
+
+        <p>
+          We aim to provide a clear and accessible experience for users
+          exploring investment services.
+        </p>
+
       </div>
+
 
       <div class="feature-grid">
 
         <div class="feature-card">
-          <div class="feature-icon">01</div>
 
-          <h3>Simple Investment Access</h3>
+          <div class="icon">✓</div>
+
+          <h3>Simple Experience</h3>
 
           <p>
-            Access your investment information through a straightforward
-            online dashboard.
+            Access your account and manage your information through a
+            straightforward online dashboard.
           </p>
+
         </div>
 
 
         <div class="feature-card">
-          <div class="feature-icon">02</div>
 
-          <h3>Portfolio Overview</h3>
+          <div class="icon">◆</div>
+
+          <h3>Flexible Options</h3>
 
           <p>
-            Keep track of your selected investment plan, account activity,
-            and available account information in one place.
+            Explore different investment amounts based on your financial
+            objectives and circumstances.
           </p>
+
         </div>
 
 
         <div class="feature-card">
-          <div class="feature-icon">03</div>
 
-          <h3>Flexible Investment Levels</h3>
+          <div class="icon">★</div>
 
-          <p>
-            Review investment options starting at $100 and extending to $1,000.
-          </p>
-        </div>
-
-
-        <div class="feature-card">
-          <div class="feature-icon">04</div>
-
-          <h3>Modern Account Experience</h3>
+          <h3>Clear Information</h3>
 
           <p>
-            Access your account across phones, tablets, and computers through
-            a responsive interface.
+            Important information about risks, terms, privacy, and account
+            services is made available to users.
           </p>
+
         </div>
 
       </div>
+
     </div>
+
   </section>
 
 
-  <!-- HOW IT WORKS -->
+  <!-- =========================
+       HOW IT WORKS
+  ========================== -->
+
   <section class="plans">
+
     <div class="container">
 
       <div class="section-heading">
+
         <h2>How It Works</h2>
+
+        <p>
+          Getting started is designed to be simple.
+        </p>
+
       </div>
+
 
       <div class="steps">
 
         <div class="step">
-          <div class="step-number">STEP 01</div>
 
-          <h3>Create Your Account</h3>
+          <div class="step-number">1</div>
+
+          <h3>Create an Account</h3>
 
           <p>
-            Register your account with your basic information.
+            Register for an account using your basic information and create
+            your login credentials.
           </p>
+
         </div>
 
 
         <div class="step">
-          <div class="step-number">STEP 02</div>
 
-          <h3>Choose an Investment Plan</h3>
+          <div class="step-number">2</div>
+
+          <h3>Review Your Options</h3>
 
           <p>
-            Review the available investment levels and select an option
-            that fits your financial objectives.
+            Review the available investment information, terms, risks,
+            conditions, and applicable requirements.
           </p>
+
         </div>
 
 
         <div class="step">
-          <div class="step-number">STEP 03</div>
 
-          <h3>Review Your Plan</h3>
+          <div class="step-number">3</div>
 
-          <p>
-            View applicable terms, fees, risks, and other information
-            associated with your selected plan.
-          </p>
-        </div>
-
-
-        <div class="step">
-          <div class="step-number">STEP 04</div>
-
-          <h3>Monitor Your Investment</h3>
+          <h3>Manage Your Account</h3>
 
           <p>
-            Use your dashboard to view your account information and
-            investment activity.
+            Access your account dashboard and manage available account
+            services.
           </p>
+
         </div>
 
       </div>
+
     </div>
+
   </section>
 
 
-  <!-- TRUST & TRANSPARENCY -->
+  <!-- =========================
+       TRUST & TRANSPARENCY
+  ========================== -->
+
   <section class="trust">
+
     <div class="container">
 
       <div class="section-heading">
-        <h2>Trust & Transparency</h2>
+
+        <h2>Trust &amp; Transparency</h2>
+
+        <p>
+          Important information should be available before you make financial
+          decisions.
+        </p>
+
       </div>
+
 
       <div class="trust-grid">
 
         <div class="trust-card">
-          <h3>Clear Information</h3>
+
+          <h3>Risk Disclosure</h3>
 
           <p>
-            Access straightforward information about your account,
-            selected investment plan, applicable fees, and associated risks.
+            Investment products carry risks. Returns are not guaranteed and
+            you should consider your financial circumstances before investing.
           </p>
+
         </div>
 
 
         <div class="trust-card">
-          <h3>Account Dashboard</h3>
+
+          <h3>Privacy</h3>
 
           <p>
-            Manage your profile and review your investment information
-            through one organized dashboard.
+            We provide information about how account and personal information
+            is collected, used, and protected.
           </p>
+
         </div>
 
 
         <div class="trust-card">
-          <h3>Investment Information</h3>
+
+          <h3>Terms</h3>
 
           <p>
-            Each investment option should clearly explain its terms,
-            conditions, fees, risks, and applicable restrictions before
-            you proceed.
+            Users should review the applicable terms and conditions before
+            using the platform or participating in any investment service.
           </p>
-        </div>
 
-
-        <div class="trust-card">
-          <h3>Responsible Investing</h3>
-
-          <p>
-            Investment involves risk. The value of investments may increase
-            or decrease, and past performance does not guarantee future results.
-          </p>
         </div>
 
       </div>
+
     </div>
+
   </section>
 
 
-  <!-- FAQ -->
+  <!-- =========================
+       FAQ
+  ========================== -->
+
   <section>
+
     <div class="container">
 
       <div class="section-heading">
+
         <h2>Frequently Asked Questions</h2>
+
+        <p>
+          Some common questions about using the platform.
+        </p>
+
       </div>
+
 
       <div class="faq">
 
-        <details>
-          <summary>
-            What investment plans are available?
-          </summary>
+        <div class="faq-item">
+
+          <h3>How do I create an account?</h3>
 
           <p>
-            Global Trust Fund offers investment-plan options ranging
-            from $100 to $1,000.
+            Select "Create Account" and complete the registration form with
+            your required information.
           </p>
-        </details>
+
+        </div>
 
 
-        <details>
-          <summary>
-            Can I view my investment information online?
-          </summary>
+        <div class="faq-item">
+
+          <h3>How do I access my account?</h3>
 
           <p>
-            Yes. Your account dashboard can provide access to your
-            available account and investment information.
+            Use the Login button and enter the email address and password
+            associated with your account.
           </p>
-        </details>
+
+        </div>
 
 
-        <details>
-          <summary>
-            Are investment returns guaranteed?
-          </summary>
+        <div class="faq-item">
+
+          <h3>Are investment returns guaranteed?</h3>
 
           <p>
-            Investment returns should not be represented as guaranteed
-            unless they are legally documented and applicable to the
-            specific investment product.
+            No investment return should be represented as guaranteed unless
+            it is legally documented and applicable. Investment values can
+            rise or fall, and losses are possible.
           </p>
-        </details>
+
+        </div>
 
 
-        <details>
-          <summary>
-            Can I access my account on mobile?
-          </summary>
+        <div class="faq-item">
+
+          <h3>Can I withdraw funds?</h3>
 
           <p>
-            Yes. The website is designed to provide a responsive experience
-            across phones, tablets, and computers.
+            Available withdrawal services and requirements depend on the
+            applicable account terms and platform functionality.
           </p>
-        </details>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>Is investing risk-free?</h3>
+
+          <p>
+            No. Investment involves risk, including the possibility of losing
+            some or all of the amount invested.
+          </p>
+
+        </div>
 
       </div>
+
     </div>
+
   </section>
 
 
-  <!-- CTA -->
+  <!-- =========================
+       CTA
+  ========================== -->
+
   <section class="cta">
+
     <div class="container">
 
-      <h2>
-        Get Started Today
-      </h2>
+      <h2>Start Your Journey</h2>
 
       <p>
-        Take the next step in organizing your financial journey.
+        Create your account to access the Global Trust Fund platform and
+        review the available account services and investment information.
       </p>
 
-      <div class="hero-actions">
+      <a href="register.html" class="btn btn-primary">
+        Create Account
+      </a>
 
-        <a href="register.html" class="btn btn-gold">
-          Create Account
-        </a>
+    </div>
 
-        <a href="login.html" class="btn btn-outline">
-          Login
-        </a>
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          Global Trust Fund
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="about.html">
+            About
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
+          <a href="terms.html">
+            Terms
+          </a>
+
+          <a href="privacy.html">
+            Privacy
+          </a>
+
+          <a href="risk-disclosure.html">
+            Risk Disclosure
+          </a>
+
+        </div>
 
       </div>
 
-    </div>
-  </section>
 
-</main>
-
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-
-    © 2003 Global Trust Fund. All rights reserved.
-
-    <div class="footer-note">
-
-      <a href="terms.html">
-        Terms & Conditions
-      </a>
-
-      &nbsp;|&nbsp;
-
-      <a href="privacy.html">
-        Privacy Policy
-      </a>
-
-      &nbsp;|&nbsp;
-
-      <a href="risk-disclosure.html">
-        Risk Disclosure
-      </a>
-
-      &nbsp;|&nbsp;
-
-      <a href="about.html">
-        About Us
-      </a>
-
-      &nbsp;|&nbsp;
-
-      <a href="contact.html">
-        Contact
-      </a>
+      <div class="copyright">
+        © 2026 Global Trust Fund. All rights reserved.
+      </div>
 
     </div>
 
-  </div>
-</footer>
+  </footer>
 
 </body>
-  </html>
+</html>
