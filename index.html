@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Trust Fundx</title>
+  <title>Global Trust Fund</title>
 
   <style>
     :root {
@@ -58,13 +58,15 @@
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
     }
 
-    .logo span {
-      color: var(--gold);
+    .logo img {
+      height: 55px;
+      width: auto;
+      max-width: 220px;
+      display: block;
     }
 
     /* BUTTONS */
@@ -400,6 +402,15 @@
     }
 
     @media (max-width: 650px) {
+      header {
+        padding: 15px 0;
+      }
+
+      .logo img {
+        height: 48px;
+        max-width: 190px;
+      }
+
       .hero {
         padding: 80px 0 70px;
       }
@@ -428,7 +439,7 @@
 <header>
   <div class="container nav">
     <a href="index.html" class="logo">
-      Global <span>Trust Fund</span>
+      <img src="logo.png" alt="Global Trust Fund">
     </a>
   </div>
 </header>
