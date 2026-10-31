@@ -1020,3 +1020,39 @@
 
       if (!profile || profile.is_admin) {
         showLoggedOut();
+        return;
+      }
+
+      showLoggedIn(
+        profile.balance ?? 0,
+        profile.currency || "USD"
+      );
+    }
+
+    logoutButton.addEventListener("click", async function () {
+      logoutButton.disabled = true;
+      logoutButton.textContent = "Logging out...";
+
+      const { error } = await supabaseClient.auth.signOut();
+
+      if (error) {
+        alert("Unable to log out. Please try again.");
+        logoutButton.disabled = false;
+        logoutButton.textContent = "Logout";
+        return;
+      }
+
+      window.location.replace("index.html");
+    });
+
+    supabaseClient.auth.onAuthStateChange(function (event, session) {
+      if (event === "SIGNED_OUT" || !session) {
+        showLoggedOut();
+      } else if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+        checkLoginStatus();
+      }
+    });
+
+    checkLoginStatus();
+  </script></body>
+</html>
