@@ -16,12 +16,13 @@
 body {
   background: #07111F;
   color: #FFFFFF;
+  min-height: 100vh;
 }
 
 header {
   background: #0D1B2A;
   border-bottom: 1px solid #203246;
-  padding: 17px 22px;
+  padding: 18px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,17 +30,29 @@ header {
 
 .logo {
   color: #D4AF37;
-  font-size: 21px;
+  font-size: 22px;
   font-weight: bold;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-email {
+  color: #B8C4D4;
+  font-size: 13px;
+}
+
 .logout {
+  color: #FFFFFF;
   background: transparent;
-  color: white;
   border: 1px solid #D4AF37;
-  padding: 9px 15px;
   border-radius: 7px;
+  padding: 9px 16px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .layout {
@@ -87,7 +100,8 @@ header {
 main {
   flex: 1;
   padding: 30px;
-  max-width: 1200px;
+  max-width: 1250px;
+  min-width: 0;
 }
 
 .view {
@@ -99,12 +113,12 @@ main {
 }
 
 .welcome {
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 
 .welcome h1 {
-  font-size: 27px;
-  margin-bottom: 9px;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
 .welcome p,
@@ -115,17 +129,21 @@ main {
 
 .balance-card,
 .card,
-.panel {
+.panel,
+.plan-card {
   background: #0D1B2A;
   border: 1px solid #203246;
   border-radius: 12px;
-  padding: 23px;
-  margin-bottom: 20px;
+  padding: 24px;
+}
+
+.balance-card {
+  margin-bottom: 22px;
 }
 
 .balance {
   color: #D4AF37;
-  font-size: 38px;
+  font-size: 40px;
   font-weight: bold;
   margin-top: 10px;
 }
@@ -133,7 +151,7 @@ main {
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
 .card h3 {
@@ -143,13 +161,21 @@ main {
 }
 
 .card p {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .section-title {
   margin: 28px 0 15px;
   font-size: 21px;
+}
+
+.panel {
+  margin-bottom: 20px;
+}
+
+.table-wrap {
+  overflow-x: auto;
 }
 
 table {
@@ -173,24 +199,20 @@ td {
   color: #B8C4D4;
 }
 
-.table-wrap {
-  overflow-x: auto;
-}
-
 .message {
   color: #B8C4D4;
   padding: 12px 0;
   line-height: 1.7;
 }
 
-.feature-list {
-  color: #B8C4D4;
-  line-height: 2;
-  padding-left: 20px;
+.gold {
+  color: #D4AF37;
 }
 
-.feature-list li {
-  margin-bottom: 5px;
+.feature-description {
+  color: #B8C4D4;
+  line-height: 1.8;
+  margin: 12px 0 20px;
 }
 
 .info-box {
@@ -204,11 +226,120 @@ td {
   margin-top: 18px;
 }
 
-.gold {
+/* Forms */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  color: #B8C4D4;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px;
+  background: #07111F;
+  color: #FFFFFF;
+  border: 1px solid #203246;
+  border-radius: 7px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #D4AF37;
+}
+
+.form-group select option {
+  background: #0D1B2A;
+}
+
+.form-button {
+  background: #D4AF37;
+  color: #07111F;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  opacity: 0.9;
+}
+
+.form-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Investment plans */
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.plan-card {
+  transition: border-color 0.2s;
+}
+
+.plan-card:hover {
+  border-color: #D4AF37;
+}
+
+.plan-card h3 {
+  color: #D4AF37;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.plan-price {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.plan-card p {
+  color: #B8C4D4;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* Profile and other sections */
+
+.profile-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #203246;
+  color: #B8C4D4;
+  line-height: 1.6;
+}
+
+.profile-item strong {
   color: #D4AF37;
 }
 
-@media(max-width: 800px) {
+.support-link {
+  display: inline-block;
+  margin-top: 15px;
+  background: #D4AF37;
+  color: #07111F;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+@media(max-width: 850px) {
   .layout {
     display: block;
   }
@@ -243,8 +374,16 @@ td {
     grid-template-columns: 1fr;
   }
 
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
   .balance {
-    font-size: 31px;
+    font-size: 32px;
+  }
+
+  .client-email {
+    display: none;
   }
 }
 </style>
@@ -254,52 +393,68 @@ td {
 
 <header>
   <div class="logo">Global Trust Fund</div>
-  <button class="logout" onclick="logout()">Logout</button>
+
+  <div class="header-right">
+    <span class="client-email" id="headerEmail"></span>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
 </header>
 
 <div class="layout">
 
   <aside class="sidebar">
+
     <h3>Client Menu</h3>
 
+    <!-- Opens the full public website in the same browser session -->
     <a href="index.html" class="nav-link">⌂ Home</a>
 
-    <button class="nav-link active" onclick="showView('dashboard', this)">
+    <button class="nav-link active"
+      onclick="showView('dashboard', this)">
       ▦ Dashboard
     </button>
 
-    <button class="nav-link" onclick="showView('deposit', this)">
+    <button class="nav-link"
+      onclick="showView('deposit', this)">
       ↓ Deposit
     </button>
 
-    <button class="nav-link" onclick="showView('withdraw', this)">
+    <button class="nav-link"
+      onclick="showView('withdraw', this)">
       ↑ Withdraw
     </button>
 
-    <button class="nav-link" onclick="showView('transactions', this)">
+    <button class="nav-link"
+      onclick="showView('transactions', this)">
       ⇄ Transactions
     </button>
 
-    <button class="nav-link" onclick="showView('plans', this)">
+    <button class="nav-link"
+      onclick="showView('plans', this)">
       ◈ Investment Plans
     </button>
 
-    <button class="nav-link" onclick="showView('profile', this)">
+    <button class="nav-link"
+      onclick="showView('profile', this)">
       ♙ My Profile
     </button>
 
-    <button class="nav-link" onclick="showView('notifications', this)">
+    <button class="nav-link"
+      onclick="showView('notifications', this)">
       ♧ Notifications
     </button>
 
-    <button class="nav-link" onclick="showView('support', this)">
+    <button class="nav-link"
+      onclick="showView('support', this)">
       ✉ Support
     </button>
+
   </aside>
 
   <main>
 
     <!-- DASHBOARD -->
+
     <section class="view active" id="dashboard">
 
       <div class="welcome">
@@ -334,6 +489,7 @@ td {
       <h2 class="section-title">Recent Activity</h2>
 
       <div class="panel table-wrap">
+
         <div id="recentMessage" class="message">
           Loading transactions...
         </div>
@@ -347,60 +503,127 @@ td {
               <th>Amount</th>
             </tr>
           </thead>
+
           <tbody id="recentRows"></tbody>
         </table>
+
       </div>
 
     </section>
 
     <!-- DEPOSIT -->
+
     <section class="view" id="deposit">
+
       <h1>Deposit</h1>
 
+      <p class="feature-description">
+        Manage your investment funding information.
+        Review the applicable payment instructions before making a deposit.
+      </p>
+
       <div class="panel">
-        <h3 class="gold">Make a Deposit</h3>
+
+        <h3 class="gold">Deposit Information</h3>
 
         <p class="message">
-          This section will provide clients with deposit instructions
-          and a secure form for submitting deposit requests and
-          payment evidence.
+          This section is reserved for deposit instructions and
+          payment information.
         </p>
 
         <div class="info-box">
-          Deposit submission is not yet enabled. Please wait until
-          the secure deposit request system is connected.
+          Please contact the support team for current deposit
+          instructions. This page does not process deposits.
         </div>
+
       </div>
+
     </section>
 
-    <!-- WITHDRAW -->
+    <!-- WITHDRAWAL -->
+
     <section class="view" id="withdraw">
-      <h1>Withdraw</h1>
+
+      <h1>Withdrawal</h1>
+
+      <p class="feature-description">
+        View the withdrawal options available on the Global Trust Fund
+        client portal.
+      </p>
 
       <div class="panel">
-        <h3 class="gold">Withdrawal Methods</h3>
 
-        <ul class="feature-list">
-          <li>Bank Transfer</li>
-          <li>Crypto Wallet</li>
-          <li>PayPal</li>
-          <li>Skrill</li>
-          <li>Payoneer</li>
-        </ul>
+        <h3 class="gold">Withdrawal Request</h3>
+
+        <form id="withdrawalForm">
+
+          <div class="form-group">
+            <label for="withdrawAmount">Withdrawal Amount (USD)</label>
+            <input
+              type="number"
+              id="withdrawAmount"
+              min="1"
+              step="0.01"
+              placeholder="Enter amount"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="withdrawMethod">Withdrawal Method</label>
+
+            <select id="withdrawMethod" required>
+              <option value="">Select withdrawal method</option>
+              <option>Bank Transfer</option>
+              <option>Crypto Wallet</option>
+              <option>PayPal</option>
+              <option>Skrill</option>
+              <option>Payoneer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="withdrawDetails">
+              Bank, Wallet or Payment Account Details
+            </label>
+
+            <textarea
+              id="withdrawDetails"
+              rows="4"
+              placeholder="Enter your payment details"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="form-button">
+            Submit Withdrawal Request
+          </button>
+
+        </form>
 
         <div class="info-box">
-          Withdrawal requests will be enabled after the secure
-          request system and administrator review process are connected.
-          No funds will be deducted through this page at this stage.
+          <strong class="gold">Demonstration form</strong><br>
+          This withdrawal section is for website presentation only.
+          It does not send requests, process payments or deduct funds
+          from your account.
         </div>
+
       </div>
+
     </section>
 
     <!-- TRANSACTIONS -->
+
     <section class="view" id="transactions">
-      <h1>Transactions</h1>
+
+      <h1>Transaction History</h1>
+
+      <p class="feature-description">
+        Review the transactions recorded on your account.
+      </p>
 
       <div class="panel table-wrap">
+
         <div id="allTransactionsMessage" class="message">
           Loading transaction history...
         </div>
@@ -414,90 +637,188 @@ td {
               <th>Amount</th>
             </tr>
           </thead>
+
           <tbody id="allTransactionsRows"></tbody>
         </table>
+
       </div>
+
     </section>
 
-    <!-- PLANS -->
+    <!-- INVESTMENT PLANS -->
+
     <section class="view" id="plans">
+
       <h1>Investment Plans</h1>
 
-      <div class="panel">
-        <h3 class="gold">Your Current Plan</h3>
-        <p class="message" id="currentPlan">
-          Loading your investment plan...
+      <p class="feature-description">
+        Choose an investment amount that fits your financial goals.
+        Review all applicable terms, fees, risks, and conditions
+        before making an investment decision.
+      </p>
+
+      <div class="plan-grid">
+
+        <div class="plan-card">
+          <h3>Starter</h3>
+          <div class="plan-price">$100</div>
+          <p>
+            Starting investment amount for users exploring the platform.
+          </p>
+        </div>
+
+        <div class="plan-card">
+          <h3>Basic</h3>
+          <div class="plan-price">$250</div>
+          <p>
+            An option for users looking to increase their investment amount.
+          </p>
+        </div>
+
+        <div class="plan-card">
+          <h3>Growth</h3>
+          <div class="plan-price">$500</div>
+          <p>
+            Designed for users considering a larger investment allocation.
+          </p>
+        </div>
+
+        <div class="plan-card">
+          <h3>Premium</h3>
+          <div class="plan-price">$750</div>
+          <p>
+            A higher investment option subject to applicable terms and risks.
+          </p>
+        </div>
+
+        <div class="plan-card">
+          <h3>Professional</h3>
+          <div class="plan-price">$1,000</div>
+          <p>
+            A larger starting investment amount for eligible users.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="info-box">
+        <strong class="gold">Investment Risk Notice</strong><br>
+        All investments involve risk, including possible loss of capital.
+        Investment amounts shown above do not represent guaranteed returns.
+        Review the official terms and conditions before making any decision.
+      </div>
+
+      <div class="panel" style="margin-top:20px;">
+        <h3 class="gold">Your Current Investment Plan</h3>
+
+        <p class="message">
+          <strong id="currentPlan">Loading...</strong>
         </p>
 
-        <div class="info-box">
-          Available investment plans, terms and conditions will
-          be displayed here once the official plan details are added.
-          Please refer to the published terms before making an investment.
-        </div>
       </div>
+
     </section>
 
     <!-- PROFILE -->
+
     <section class="view" id="profile">
+
       <h1>My Profile</h1>
 
+      <p class="feature-description">
+        View your registered account information.
+      </p>
+
       <div class="panel">
-        <h3 class="gold">Account Information</h3>
 
-        <p class="message">
-          Name: <span id="profileName">Loading...</span>
-        </p>
+        <div class="profile-item">
+          <strong>Full Name:</strong>
+          <span id="profileName">Loading...</span>
+        </div>
 
-        <p class="message">
-          Email: <span id="profileEmail">Loading...</span>
-        </p>
+        <div class="profile-item">
+          <strong>Email Address:</strong>
+          <span id="profileEmail">Loading...</span>
+        </div>
 
-        <p class="message">
-          Account Status: <span id="profileStatus">Loading...</span>
-        </p>
+        <div class="profile-item">
+          <strong>Account Status:</strong>
+          <span id="profileStatus">Loading...</span>
+        </div>
 
-        <p class="message">
-          Investment Plan: <span id="profilePlan">Loading...</span>
-        </p>
+        <div class="profile-item">
+          <strong>Investment Plan:</strong>
+          <span id="profilePlan">Loading...</span>
+        </div>
+
+        <div class="profile-item">
+          <strong>Account Currency:</strong>
+          <span id="profileCurrency">Loading...</span>
+        </div>
+
       </div>
+
     </section>
 
     <!-- NOTIFICATIONS -->
+
     <section class="view" id="notifications">
+
       <h1>Notifications</h1>
 
+      <p class="feature-description">
+        Stay informed about account updates.
+      </p>
+
       <div class="panel">
+
+        <h3 class="gold">Account Notifications</h3>
+
         <p class="message">
-          Account notifications and deposit or withdrawal request
-          updates will appear here when the notification system is connected.
+          Your account notification area is displayed here.
+          New account updates can be added when a notification
+          system is connected.
         </p>
+
       </div>
+
     </section>
 
     <!-- SUPPORT -->
+
     <section class="view" id="support">
-      <h1>Support</h1>
+
+      <h1>Client Support</h1>
+
+      <p class="feature-description">
+        We're here to help with questions about your account.
+      </p>
 
       <div class="panel">
-        <h3 class="gold">Client Assistance</h3>
+
+        <h3 class="gold">Need Assistance?</h3>
 
         <p class="message">
-          Need help with your account? Contact the Global Trust Fund
-          support team through the official contact page.
+          Contact the Global Trust Fund support team through
+          the official contact page.
         </p>
 
-        <a href="contact.html" class="nav-link gold">
-          Contact Support →
+        <a href="contact.html" class="support-link">
+          Contact Support
         </a>
+
       </div>
+
     </section>
 
   </main>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 const SUPABASE_URL =
   "https://xywwhnijjtipghhebnjk.supabase.co";
 
@@ -511,23 +832,38 @@ const supabaseClient = window.supabase.createClient(
 
 let clientCurrency = "USD";
 
+/* NAVIGATION */
+
 function showView(viewId, button) {
+
   document.querySelectorAll(".view").forEach(section => {
     section.classList.remove("active");
   });
 
-  document.querySelectorAll(".nav-link").forEach(link => {
+  document.querySelectorAll(".sidebar .nav-link").forEach(link => {
     link.classList.remove("active");
   });
 
-  document.getElementById(viewId).classList.add("active");
+  const selectedView = document.getElementById(viewId);
+
+  if (selectedView) {
+    selectedView.classList.add("active");
+  }
 
   if (button) {
     button.classList.add("active");
   }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
+/* MONEY FORMAT */
+
 function formatMoney(amount, currency) {
+
   const value = Number(amount);
 
   if (!Number.isFinite(value)) {
@@ -540,38 +876,58 @@ function formatMoney(amount, currency) {
       currency: currency,
       minimumFractionDigits: 2
     }).format(value);
+
   } catch (error) {
     return value.toFixed(2) + " " + currency;
   }
 }
 
+/* TRANSACTION TABLE */
+
 function addTransactionRows(data, targetId) {
+
   const rows = document.getElementById(targetId);
+
   rows.innerHTML = "";
 
   data.forEach(transaction => {
+
     const row = document.createElement("tr");
 
     const date = new Date(transaction.created_at);
 
     const values = [
-      isNaN(date.getTime()) ? "Unknown date" : date.toLocaleDateString(),
+      isNaN(date.getTime())
+        ? "Unknown date"
+        : date.toLocaleDateString(),
+
       transaction.transaction_type || "Transaction",
+
       transaction.description || "—",
+
       formatMoney(transaction.amount, clientCurrency)
     ];
 
     values.forEach(value => {
+
       const cell = document.createElement("td");
+
       cell.textContent = value;
+
       row.appendChild(cell);
+
     });
 
     rows.appendChild(row);
+
   });
+
 }
 
+/* LOAD TRANSACTIONS */
+
 async function loadTransactions(userId) {
+
   const { data, error } = await supabaseClient
     .from("transactions")
     .select("created_at, transaction_type, description, amount")
@@ -579,6 +935,7 @@ async function loadTransactions(userId) {
     .order("created_at", { ascending: false });
 
   if (error) {
+
     document.getElementById("recentMessage").textContent =
       "Unable to load recent activity.";
 
@@ -589,6 +946,7 @@ async function loadTransactions(userId) {
   }
 
   if (!data || data.length === 0) {
+
     document.getElementById("recentMessage").textContent =
       "No recent activity to display.";
 
@@ -601,23 +959,32 @@ async function loadTransactions(userId) {
   const recent = data.slice(0, 10);
 
   addTransactionRows(recent, "recentRows");
+
   addTransactionRows(data, "allTransactionsRows");
 
   document.getElementById("recentTable").style.display = "table";
+
   document.getElementById("recentMessage").style.display = "none";
 
   document.getElementById("allTransactionsTable").style.display = "table";
+
   document.getElementById("allTransactionsMessage").style.display = "none";
+
 }
 
+/* LOAD CLIENT DASHBOARD */
+
 async function loadDashboard() {
+
   const {
     data: { user },
     error: authError
   } = await supabaseClient.auth.getUser();
 
   if (authError || !user) {
+
     window.location.href = "login.html";
+
     return;
   }
 
@@ -627,8 +994,14 @@ async function loadDashboard() {
     "User";
 
   document.getElementById("userName").textContent = name;
+
+  document.getElementById("headerEmail").textContent =
+    user.email || "";
+
   document.getElementById("profileName").textContent = name;
-  document.getElementById("profileEmail").textContent = user.email || "Unavailable";
+
+  document.getElementById("profileEmail").textContent =
+    user.email || "Unavailable";
 
   const { data: profile, error: profileError } =
     await supabaseClient
@@ -638,10 +1011,18 @@ async function loadDashboard() {
       .single();
 
   if (profileError || !profile) {
-    document.getElementById("balance").textContent = "Unavailable";
-    document.getElementById("status").textContent = "Unavailable";
-    document.getElementById("plan").textContent = "Unavailable";
-    document.getElementById("currency").textContent = "Unavailable";
+
+    document.getElementById("balance").textContent =
+      "Unavailable";
+
+    document.getElementById("status").textContent =
+      "Unavailable";
+
+    document.getElementById("plan").textContent =
+      "Unavailable";
+
+    document.getElementById("currency").textContent =
+      "Unavailable";
 
     document.getElementById("recentMessage").textContent =
       "We couldn't load your account information. Please contact support.";
@@ -649,51 +1030,4 @@ async function loadDashboard() {
     return;
   }
 
-  if (profile.is_admin === true) {
-    await supabaseClient.auth.signOut();
-    window.location.href = "login.html";
-    return;
-  }
-
-  clientCurrency = profile.currency || "USD";
-
-  document.getElementById("balance").textContent =
-    formatMoney(profile.balance, clientCurrency);
-
-  document.getElementById("status").textContent =
-    profile.status || "Active";
-
-  document.getElementById("plan").textContent =
-    profile.plan || "Standard";
-
-  document.getElementById("currency").textContent =
-    clientCurrency;
-
-  document.getElementById("currentPlan").textContent =
-    profile.plan || "Standard";
-
-  document.getElementById("profileStatus").textContent =
-    profile.status || "Active";
-
-  document.getElementById("profilePlan").textContent =
-    profile.plan || "Standard";
-
-  await loadTransactions(user.id);
-}
-
-async function logout() {
-  const { error } = await supabaseClient.auth.signOut();
-
-  if (error) {
-    alert("Unable to log out. Please try again.");
-    return;
-  }
-
-  window.location.href = "login.html";
-}
-
-loadDashboard();
-</script>
-
-</body>
-</html>
+  if (profile.is_
