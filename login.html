@@ -120,7 +120,7 @@
 <h1>Welcome Back</h1>
 <p class="subtitle">Login to access your account.</p>
 
-<form id="loginForm" onsubmit="loginUser(event)">
+<form id="loginForm">
 
   <div class="field">
     <label for="email">Email Address</label>
@@ -128,7 +128,7 @@
       type="email"
       id="email"
       placeholder="Enter your email"
-      autocomplete="email"
+      autocomplete="username"
       required
     >
   </div>
@@ -158,8 +158,7 @@
 <a class="back-home" href="index.html">← Back to Home</a>
 
   </div>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>
-    const SUPABASE_URL =
-      "https://xywwhnijjtipghhebnjk.supabase.co";
+    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
@@ -169,36 +168,46 @@
       SUPABASE_PUBLISHABLE_KEY
     );
 
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+
+    loginForm.addEventListener("submit", loginUser);
+
     async function loginUser(event) {
       event.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      const button = document.getElementById("loginButton");
+      loginButton.disabled = true;
+      loginButton.textContent = "Logging in...";
 
-      button.disabled = true;
-      button.textContent = "Logging in...";
+      try {
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
 
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-          email: email,
-          password: password
-        });
+        if (error) {
+          throw error;
+        }
 
-      if (error) {
-        alert(error.message);
-        button.disabled = false;
-        button.textContent = "Login";
-        return;
-      }
+        if (!data.session || !data.user) {
+          throw new Error("Login was unsuccessful. Please try again.");
+        }
 
-      if (data.user) {
+        // Allow the authenticated session to be saved.
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // Return the client to the normal homepage.
         window.location.replace("index.html");
-      } else {
-        alert("Login could not be completed. Please try again.");
-        button.disabled = false;
-        button.textContent = "Login";
+
+      } catch (error) {
+        alert(error.message || "Unable to log in. Please try again.");
+
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
       }
     }
   </script></body>
