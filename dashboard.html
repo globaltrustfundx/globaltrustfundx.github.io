@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Global Trust Fund</title>
+  <title>Investment Portfolio | Global Trust Fund</title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
@@ -21,19 +21,31 @@
     .welcome p, .label { color: #B8C4D4; }
     .verified-badge { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
 
-    .balance-card, .card, .activity { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 24px; }
-    .balance-card { margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-    .balance { color: #D4AF37; font-size: 40px; font-weight: bold; margin-top: 10px; }
+    /* GRID METRICS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 22px; }
+    .metric-card { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 20px; }
+    .metric-card h3 { color: #B8C4D4; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .metric-card .value { font-size: 22px; font-weight: bold; color: #FFF; }
+    .metric-card .highlight { color: #D4AF37; font-size: 26px; }
+    .metric-card .trend { font-size: 12px; color: #2ecc71; margin-top: 5px; }
 
+    /* MAIN PORTFOLIO BANNER */
+    .portfolio-banner { background: linear-gradient(135deg, #0D1B2A, #152b48); border: 1px solid #D4AF37; border-radius: 12px; padding: 30px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .portfolio-info h2 { color: #D4AF37; font-size: 24px; margin-bottom: 5px; }
+    .portfolio-info p { color: #B8C4D4; font-size: 14px; }
+    
     .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-action { background: #D4AF37; color: #07111F; border: none; border-radius: 8px; padding: 12px 18px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-action { background: #D4AF37; color: #07111F; border: none; border-radius: 8px; padding: 12px 20px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .btn-action:hover { opacity: 0.9; transform: translateY(-2px); }
     .btn-action-outline { background: transparent; color: #D4AF37; border: 1px solid #D4AF37; }
     .btn-action-outline:hover { background: #D4AF37; color: #07111F; }
 
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .card h3 { color: #B8C4D4; font-size: 14px; margin-bottom: 12px; }
-    .card p { font-size: 20px; font-weight: bold; }
+    /* INVESTMENT POSITION CARD */
+    .investment-box { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+    .investment-box h3 { font-size: 18px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .progress-bar-container { background: #07111F; border-radius: 10px; height: 10px; width: 100%; margin: 15px 0 10px; overflow: hidden; border: 1px solid #203246; }
+    .progress-bar { background: linear-gradient(90deg, #D4AF37, #f3cf62); height: 100%; width: 68%; border-radius: 10px; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: #B8C4D4; }
 
     .section { margin-top: 30px; }
     .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
@@ -42,12 +54,12 @@
     .search-box { padding: 8px 12px; background: #07111F; border: 1px solid #203246; border-radius: 6px; color: #FFF; font-size: 13px; width: 220px; outline: none; }
     .search-box:focus { border-color: #D4AF37; }
 
-    .activity { overflow-x: auto; }
+    .activity { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 20px; overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 500px; }
     th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid #203246; font-size: 14px; }
     th { color: #D4AF37; }
     td { color: #B8C4D4; }
-    .message { color: #B8C4D4; padding: 12px 0; line-height: 1.6; text-align: center; }
+    .message { color: #B8C4D4; padding: 15px 0; text-align: center; }
 
     /* MODAL STYLES */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
@@ -62,9 +74,11 @@
     .modal-btn-submit { flex: 1; background: #D4AF37; color: #07111F; border: none; padding: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; }
     .modal-btn-cancel { flex: 1; background: transparent; color: #B8C4D4; border: 1px solid #203246; padding: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; }
 
-    @media (max-width: 700px) {
-      .cards { grid-template-columns: 1fr; }
-      .balance { font-size: 32px; }
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .metrics-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -84,45 +98,74 @@
   <div class="welcome">
     <div>
       <h1>Welcome, <span id="userName">Loading...</span></h1>
-      <p>Here's an overview of your wealth portfolio.</p>
+      <p>Institutional Investment Portal & Asset Management</p>
     </div>
-    <div class="verified-badge">✓ Verified Account</div>
+    <div class="verified-badge">✓ Verified Investor</div>
   </div>
 
-  <div class="balance-card">
-    <div>
-      <div class="label">Total Account Balance</div>
-      <div class="balance" id="balance">Loading...</div>
+  <!-- PORTFOLIO BANNER -->
+  <div class="portfolio-banner">
+    <div class="portfolio-info">
+      <div class="label">Total Portfolio Value</div>
+      <div class="value highlight" id="balance" style="font-size: 38px; font-weight: bold; color: #D4AF37; margin: 5px 0;">Loading...</div>
+      <p>Account Status: <strong id="status" style="color: #2ecc71;">Active</strong> | Currency: <strong id="currency">USD</strong></p>
     </div>
     <div class="action-buttons">
-      <button class="btn-action" onclick="openDepositModal()">+ Deposit Funds</button>
-      <button class="btn-action btn-action-outline" onclick="openWithdrawModal()">⚡ Withdraw</button>
+      <button class="btn-action" onclick="openDepositModal()">+ Deposit / Invest</button>
+      <button class="btn-action btn-action-outline" onclick="openWithdrawModal()">⚡ Crypto Withdrawal</button>
     </div>
   </div>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Account Status</h3>
-      <p id="status">Loading...</p>
+  <!-- METRICS OVERVIEW -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <h3>Active Plan</h3>
+      <div class="value" id="plan">Loading...</div>
+      <div class="trend">Tier Status: Active</div>
     </div>
-    <div class="card">
-      <h3>Investment Plan</h3>
-      <p id="plan">Loading...</p>
+    <div class="metric-card">
+      <h3>Estimated Yield (ROI)</h3>
+      <div class="value" style="color: #2ecc71;">+4.85%</div>
+      <div class="trend">↑ Weekly Compound</div>
     </div>
-    <div class="card">
-      <h3>Account Currency</h3>
-      <p id="currency">Loading...</p>
+    <div class="metric-card">
+      <h3>Total Profit Earned</h3>
+      <div class="value" style="color: #D4AF37;">$1,240.50</div>
+      <div class="trend">Auto-Credited</div>
+    </div>
+    <div class="metric-card">
+      <h3>Risk Profile</h3>
+      <div class="value">Balanced</div>
+      <div class="trend">Protected Fund</div>
     </div>
   </div>
 
+  <!-- ACTIVE INVESTMENT POSITION -->
+  <div class="investment-box">
+    <h3>
+      <span>Active Investment Cycle</span>
+      <span style="font-size: 13px; color: #D4AF37; font-weight: normal;">Maturity in 14 Days</span>
+    </h3>
+    <p style="color: #B8C4D4; font-size: 14px;">Your capital is currently deployed in the managed trust fund portfolio.</p>
+    
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-labels">
+      <span>Cycle Day 16 of 30</span>
+      <span>68% Complete</span>
+    </div>
+  </div>
+
+  <!-- RECENT TRANSACTIONS / ACTIVITY -->
   <div class="section">
     <div class="section-header">
-      <h2>Recent Activity</h2>
-      <input type="text" id="searchTransactions" class="search-box" placeholder="Search transactions..." onkeyup="filterTransactions()">
+      <h2>Transaction &amp; Yield History</h2>
+      <input type="text" id="searchTransactions" class="search-box" placeholder="Search activity..." onkeyup="filterTransactions()">
     </div>
 
     <div class="activity">
-      <div id="activityMessage" class="message">Loading transactions...</div>
+      <div id="activityMessage" class="message">Loading activity records...</div>
       <table id="activityTable" style="display:none;">
         <thead>
           <tr>
@@ -143,7 +186,7 @@
 <div class="modal-overlay" id="withdrawModal">
   <div class="modal">
     <h2>Crypto Withdrawal</h2>
-    <p>Transfer funds securely to your external crypto wallet address.</p>
+    <p>Transfer returns or capital securely to your external wallet.</p>
     <form onsubmit="submitWithdrawal(event)">
       <div class="field">
         <label>Select Cryptocurrency</label>
@@ -169,14 +212,14 @@
   </div>
 </div>
 
-<!-- DEPOSIT MODAL -->
+<!-- DEPOSIT / INVEST MODAL -->
 <div class="modal-overlay" id="depositModal">
   <div class="modal">
-    <h2>Fund Your Account</h2>
-    <p>Select your preferred deposit method or contact support for wire instructions.</p>
+    <h2>Deposit &amp; Allocate Capital</h2>
+    <p>Fund your account to increase your investment position.</p>
     <form onsubmit="submitDeposit(event)">
       <div class="field">
-        <label>Deposit Method</label>
+        <label>Payment Method</label>
         <select id="depositMethod" required>
           <option value="USDT">USDT (TRC20)</option>
           <option value="BTC">Bitcoin</option>
@@ -184,17 +227,18 @@
         </select>
       </div>
       <div class="field">
-        <label>Amount to Deposit</label>
-        <input type="number" id="depositAmount" placeholder="0.00" step="0.01" min="10" required>
+        <label>Amount</label>
+        <input type="number" id="depositAmount" placeholder="0.00" step="0.01" min="100" required>
       </div>
       <div class="modal-buttons">
-        <button type="submit" class="modal-btn-submit">Proceed to Payment</button>
+        <button type="submit" class="modal-btn-submit">Proceed</button>
         <button type="button" class="modal-btn-cancel" onclick="closeDepositModal()">Cancel</button>
       </div>
     </form>
   </div>
 </div>
 
+<!-- Supabase Script Integration -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
@@ -213,7 +257,7 @@
     }
 
     document.getElementById("userName").textContent =
-      user.user_metadata?.full_name || user.email?.split("@")[0] || "User";
+      user.user_metadata?.full_name || user.email?.split("@")[0] || "Investor";
 
     const { data: profile, error: profileError } = await supabaseClient
       .from("profiles")
@@ -226,7 +270,7 @@
       document.getElementById("status").textContent = "Unavailable";
       document.getElementById("plan").textContent = "Unavailable";
       document.getElementById("currency").textContent = "Unavailable";
-      document.getElementById("activityMessage").textContent = "We couldn't load your account information. Please contact support.";
+      document.getElementById("activityMessage").textContent = "Unable to fetch live account data. Please contact support.";
       return;
     }
 
@@ -264,11 +308,11 @@
 
     const message = document.getElementById("activityMessage");
     if (error) {
-      message.textContent = "Unable to load recent activity.";
+      message.textContent = "Unable to load activity logs.";
       return;
     }
     if (!data || data.length === 0) {
-      message.textContent = "No recent activity to display.";
+      message.textContent = "No investment activity recorded yet.";
       return;
     }
 
@@ -285,7 +329,7 @@
 
     if (data.length === 0) {
       message.style.display = "block";
-      message.textContent = "No matching transactions found.";
+      message.textContent = "No matching records found.";
       table.style.display = "none";
       return;
     }
@@ -326,7 +370,7 @@
     event.preventDefault();
     const crypto = document.getElementById("cryptoType").value;
     const amount = document.getElementById("withdrawAmount").value;
-    alert(`Withdrawal request of ${amount} via ${crypto} submitted successfully! Processing takes up to 24 hours.`);
+    alert(`Withdrawal request of ${amount} via ${crypto} submitted successfully. Processing takes 24 hours.`);
     closeWithdrawModal();
   }
 
@@ -334,7 +378,7 @@
     event.preventDefault();
     const method = document.getElementById("depositMethod").value;
     const amount = document.getElementById("depositAmount").value;
-    alert(`Deposit order initiated for ${amount} via ${method}. Please contact support or check instructions for payment address.`);
+    alert(`Capital allocation order initiated for ${amount} via ${method}. Check payment instructions.`);
     closeDepositModal();
   }
 
