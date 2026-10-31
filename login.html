@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Global Trust Fund</title>
-
-  <style>
+  <title>Login | Global Trust Fund</title>  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -93,6 +90,11 @@
       opacity: 0.9;
     }
 
+    .login-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .register-link {
       text-align: center;
       margin-top: 22px;
@@ -113,61 +115,54 @@
       text-decoration: none;
       font-size: 14px;
     }
-  </style>
-</head>
+  </style></head><body>  <div class="login-container"><div class="logo">Global Trust Fund</div>
 
-<body>
+<h1>Welcome Back</h1>
+<p class="subtitle">Login to access your account.</p>
 
-  <div class="login-container">
+<form id="loginForm" onsubmit="loginUser(event)">
 
-    <div class="logo">Global Trust Fund</div>
-
-    <h1>Welcome Back</h1>
-    <p class="subtitle">Login to access your account.</p>
-
-    <form onsubmit="loginUser(event)">
-
-      <div class="field">
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          required
-        >
-      </div>
-
-      <div class="field">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          required
-        >
-      </div>
-
-      <button class="login-button" type="submit">
-        Login
-      </button>
-
-    </form>
-
-    <div class="register-link">
-      Don't have an account?
-      <a href="register.html">Create one</a>
-    </div>
-
-    <a class="back-home" href="index.html">← Back to Home</a>
-
+  <div class="field">
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
+    >
   </div>
 
-  <!-- Supabase library -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <div class="field">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter your password"
+      autocomplete="current-password"
+      required
+    >
+  </div>
 
-  <script>
-    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
-    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+  <button class="login-button" id="loginButton" type="submit">
+    Login
+  </button>
+
+</form>
+
+<div class="register-link">
+  Don't have an account?
+  <a href="register.html">Create one</a>
+</div>
+
+<a class="back-home" href="index.html">← Back to Home</a>
+
+  </div>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>
+    const SUPABASE_URL =
+      "https://xywwhnijjtipghhebnjk.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
 
     const supabaseClient = window.supabase.createClient(
       SUPABASE_URL,
@@ -180,15 +175,16 @@
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      const button = event.target.querySelector("button[type='submit']");
+      const button = document.getElementById("loginButton");
 
       button.disabled = true;
       button.textContent = "Logging in...";
 
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
 
       if (error) {
         alert(error.message);
@@ -198,10 +194,12 @@
       }
 
       if (data.user) {
-        window.location.href = "dashboard.html";
+        window.location.replace("index.html");
+      } else {
+        alert("Login could not be completed. Please try again.");
+        button.disabled = false;
+        button.textContent = "Login";
       }
     }
-  </script>
-
-</body>
+  </script></body>
 </html>
