@@ -1,8 +1,15 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Global Trust Fund</title>  <meta name="description" content="Global Trust Fund — Explore investment options, account services, and financial information. Investment involves risk.">
-  <meta name="theme-color" content="#07152d">  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Global Trust Fund</title>
+
+  <meta name="description" content="Global Trust Fund — Explore investment options, account services, and financial information. Investment involves risk.">
+  <meta name="theme-color" content="#07152d">
+
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -35,7 +42,9 @@
       margin: auto;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================== */
 
     header {
       background: #07152d;
@@ -46,14 +55,12 @@
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: flex-start;
     }
 
     .logo {
       display: inline-flex;
       align-items: center;
-      flex-shrink: 0;
     }
 
     .logo img {
@@ -63,38 +70,9 @@
       display: block;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #c9d2df;
-      font-size: 14px;
-      font-weight: bold;
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: #d4af37;
-    }
-
-    .nav-links .nav-account {
-      color: #d4af37;
-      border: 1px solid #d4af37;
-      padding: 9px 15px;
-      border-radius: 5px;
-    }
-
-    .nav-links .nav-account:hover {
-      background: #d4af37;
-      color: #07152d;
-    }
-
-    /* HERO */
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
       padding: 110px 0 100px;
@@ -162,7 +140,9 @@
       transform: translateY(-2px);
     }
 
-    /* GENERAL SECTIONS */
+    /* =========================
+       GENERAL SECTIONS
+    ========================== */
 
     section {
       padding: 85px 0;
@@ -184,7 +164,9 @@
       margin: auto;
     }
 
-    /* INVESTMENT PLANS */
+    /* =========================
+       INVESTMENT PLANS
+    ========================== */
 
     .plans {
       background: #091b38;
@@ -234,7 +216,9 @@
       font-size: 13px;
     }
 
-    /* FEATURES */
+    /* =========================
+       FEATURES
+    ========================== */
 
     .feature-grid {
       display: grid;
@@ -272,7 +256,9 @@
       font-size: 15px;
     }
 
-    /* HOW IT WORKS */
+    /* =========================
+       HOW IT WORKS
+    ========================== */
 
     .steps {
       display: grid;
@@ -308,7 +294,9 @@
       font-size: 15px;
     }
 
-    /* TRUST */
+    /* =========================
+       TRUST
+    ========================== */
 
     .trust {
       background: #091b38;
@@ -337,7 +325,9 @@
       font-size: 15px;
     }
 
-    /* FAQ */
+    /* =========================
+       FAQ
+    ========================== */
 
     .faq {
       max-width: 850px;
@@ -363,7 +353,9 @@
       font-size: 15px;
     }
 
-    /* CTA */
+    /* =========================
+       CTA
+    ========================== */
 
     .cta {
       text-align: center;
@@ -385,7 +377,9 @@
       color: #b8c2d1;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================== */
 
     footer {
       background: #050f20;
@@ -431,7 +425,9 @@
       font-size: 13px;
     }
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================== */
 
     @media (max-width: 900px) {
       .plan-grid {
@@ -443,35 +439,20 @@
       .trust-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .nav {
-        flex-wrap: wrap;
-      }
     }
 
     @media (max-width: 650px) {
       header {
-        padding: 12px 0;
+        padding: 15px 0;
       }
 
       .nav {
-        flex-direction: column;
         justify-content: center;
-        gap: 12px;
       }
 
       .logo img {
         height: 65px;
-        max-width: 100%;
-      }
-
-      .nav-links {
-        justify-content: center;
-        gap: 12px 18px;
-      }
-
-      .nav-links a {
-        font-size: 13px;
+        max-width: 500px;
       }
 
       .hero {
@@ -519,506 +500,503 @@
         justify-content: center;
       }
     }
-  </style></head><body>  <!-- HEADER -->  <header>
-    <div class="container nav">  <a href="index.html" class="logo">
-    <img src="logo.png" alt="Global Trust Fund">
-  </a>
+  </style>
+</head>
 
-  <!-- Navigation changes depending on login status -->
-  <nav class="nav-links" id="mainNavigation" aria-label="Main navigation">
+<body>
 
-    <a href="index.html">Home</a>
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-    <a href="#plans">Plans</a>
+  <header>
+    <div class="container nav">
 
-    <a href="login.html" id="navLogin">Login</a>
-
-    <a href="register.html" id="navRegister">Create Account</a>
-
-    <a href="dashboard.html" id="navDashboard" class="nav-account" hidden>
-      Dashboard
-    </a>
-
-    <a href="dashboard.html" id="navMyAccount" class="nav-account" hidden>
-      My Account
-    </a>
-
-  </nav>
-
-</div>
-
-  </header>  <!-- HERO -->  <section class="hero">
-    <div class="container">  <h1>
-    Grow Your Financial
-    <span>Future</span>
-  </h1>
-
-  <p>
-    Explore investment opportunities and manage your financial goals
-    through Global Trust Fund.
-  </p>
-
-  <div class="hero-buttons" id="heroGuestButtons">
-
-    <a href="register.html" class="btn btn-primary">
-      Create Account
-    </a>
-
-    <a href="login.html" class="btn btn-outline">
-      Login
-    </a>
-
-  </div>
-
-  <div class="hero-buttons" id="heroClientButtons" hidden>
-
-    <a href="dashboard.html" class="btn btn-primary">
-      Go to Dashboard
-    </a>
-
-    <a href="dashboard.html" class="btn btn-outline">
-      My Account
-    </a>
-
-  </div>
-
-</div>
-
-  </section>  <!-- INVESTMENT PLANS -->  <section class="plans" id="plans"><div class="container">
-
-  <div class="section-heading">
-
-    <h2>Investment Plans</h2>
-
-    <p>
-      Choose an investment amount that fits your financial goals.
-      Review all applicable terms, fees, risks, and conditions before
-      making an investment decision.
-    </p>
-
-  </div>
-
-  <div class="plan-grid">
-
-    <div class="plan-card">
-      <h3>Starter</h3>
-      <div class="plan-amount">$100</div>
-      <p>
-        Starting investment amount for users exploring the platform.
-      </p>
-    </div>
-
-    <div class="plan-card">
-      <h3>Basic</h3>
-      <div class="plan-amount">$250</div>
-      <p>
-        An option for users looking to increase their investment amount.
-      </p>
-    </div>
-
-    <div class="plan-card">
-      <h3>Growth</h3>
-      <div class="plan-amount">$500</div>
-      <p>
-        Designed for users considering a larger investment allocation.
-      </p>
-    </div>
-
-    <div class="plan-card">
-      <h3>Premium</h3>
-      <div class="plan-amount">$750</div>
-      <p>
-        A higher investment option subject to applicable terms and risks.
-      </p>
-    </div>
-
-    <div class="plan-card">
-      <h3>Professional</h3>
-      <div class="plan-amount">$1,000</div>
-      <p>
-        A larger starting investment amount for eligible users.
-      </p>
-    </div>
-
-  </div>
-
-  <p class="plan-note">
-    Investment involves risk. The value of investments may increase or
-    decrease, and past performance does not guarantee future results.
-  </p>
-
-</div>
-
-  </section>  <!-- WHY CHOOSE US -->  <section><div class="container">
-
-  <div class="section-heading">
-
-    <h2>Why Choose Global Trust Fund?</h2>
-
-    <p>
-      We aim to provide a clear and accessible experience for users
-      exploring investment services.
-    </p>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-
-      <div class="icon">✓</div>
-
-      <h3>Simple Experience</h3>
-
-      <p>
-        Access your account and manage your information through a
-        straightforward online dashboard.
-      </p>
-
-    </div>
-
-    <div class="feature-card">
-
-      <div class="icon">◆</div>
-
-      <h3>Flexible Options</h3>
-
-      <p>
-        Explore different investment amounts based on your financial
-        objectives and circumstances.
-      </p>
-
-    </div>
-
-    <div class="feature-card">
-
-      <div class="icon">★</div>
-
-      <h3>Clear Information</h3>
-
-      <p>
-        Important information about risks, terms, privacy, and account
-        services is made available to users.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-  </section>  <!-- HOW IT WORKS -->  <section class="plans"><div class="container">
-
-  <div class="section-heading">
-
-    <h2>How It Works</h2>
-
-    <p>
-      Getting started is designed to be simple.
-    </p>
-
-  </div>
-
-  <div class="steps">
-
-    <div class="step">
-
-      <div class="step-number">1</div>
-
-      <h3>Create an Account</h3>
-
-      <p>
-        Register for an account using your basic information and create
-        your login credentials.
-      </p>
-
-    </div>
-
-    <div class="step">
-
-      <div class="step-number">2</div>
-
-      <h3>Review Your Options</h3>
-
-      <p>
-        Review the available investment information, terms, risks,
-        conditions, and applicable requirements.
-      </p>
-
-    </div>
-
-    <div class="step">
-
-      <div class="step-number">3</div>
-
-      <h3>Manage Your Account</h3>
-
-      <p>
-        Access your account dashboard and manage available account
-        services.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-  </section>  <!-- TRUST & TRANSPARENCY -->  <section class="trust"><div class="container">
-
-  <div class="section-heading">
-
-    <h2>Trust &amp; Transparency</h2>
-
-    <p>
-      Important information should be available before you make financial
-      decisions.
-    </p>
-
-  </div>
-
-  <div class="trust-grid">
-
-    <div class="trust-card">
-
-      <h3>Risk Disclosure</h3>
-
-      <p>
-        Investment products carry risks. Returns are not guaranteed and
-        you should consider your financial circumstances before investing.
-      </p>
-
-    </div>
-
-    <div class="trust-card">
-
-      <h3>Privacy</h3>
-
-      <p>
-        We provide information about how account and personal information
-        is collected, used, and protected.
-      </p>
-
-    </div>
-
-    <div class="trust-card">
-
-      <h3>Terms</h3>
-
-      <p>
-        Users should review the applicable terms and conditions before
-        using the platform or participating in any investment service.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-  </section>  <!-- FAQ -->  <section><div class="container">
-
-  <div class="section-heading">
-
-    <h2>Frequently Asked Questions</h2>
-
-    <p>
-      Some common questions about using the platform.
-    </p>
-
-  </div>
-
-  <div class="faq">
-
-    <div class="faq-item">
-
-      <h3>How do I create an account?</h3>
-
-      <p>
-        Select "Create Account" and complete the registration form with
-        your required information.
-      </p>
-
-    </div>
-
-    <div class="faq-item">
-
-      <h3>How do I access my account?</h3>
-
-      <p>
-        Use the Login button and enter the email address and password
-        associated with your account.
-      </p>
-
-    </div>
-
-    <div class="faq-item">
-
-      <h3>Are investment returns guaranteed?</h3>
-
-      <p>
-        No investment return should be represented as guaranteed unless
-        it is legally documented and applicable. Investment values can
-        rise or fall, and losses are possible.
-      </p>
-
-    </div>
-
-    <div class="faq-item">
-
-      <h3>Can I withdraw funds?</h3>
-
-      <p>
-        Available withdrawal services and requirements depend on the
-        applicable account terms and platform functionality.
-      </p>
-
-    </div>
-
-    <div class="faq-item">
-
-      <h3>Is investing risk-free?</h3>
-
-      <p>
-        No. Investment involves risk, including the possibility of losing
-        some or all of the amount invested.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-  </section>  <!-- CTA -->  <section class="cta"><div class="container">
-
-  <h2>Start Your Journey</h2>
-
-  <p>
-    Create your account to access the Global Trust Fund platform and
-    review the available account services and investment information.
-  </p>
-
-  <a href="register.html" class="btn btn-primary" id="ctaRegister">
-    Create Account
-  </a>
-
-  <a href="dashboard.html" class="btn btn-primary" id="ctaDashboard" hidden>
-    Visit Your Dashboard
-  </a>
-
-</div>
-
-  </section>  <!-- FOOTER -->  <footer><div class="container">
-
-  <div class="footer-content">
-
-    <div class="footer-brand">
-      Global Trust Fund
-    </div>
-
-    <div class="footer-links">
-
-      <a href="about.html">
-        About
-      </a>
-
-      <a href="contact.html">
-        Contact
-      </a>
-
-      <a href="terms.html">
-        Terms
-      </a>
-
-      <a href="privacy.html">
-        Privacy
-      </a>
-
-      <a href="risk-disclosure.html">
-        Risk Disclosure
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global Trust Fund">
       </a>
 
     </div>
+  </header>
 
-  </div>
 
-  <div class="copyright">
-    © 2003 Global Trust Fund. All rights reserved.
-  </div>
+  <!-- =========================
+       HERO
+  ========================== -->
 
-</div>
+  <section class="hero">
+    <div class="container">
 
-  </footer>  <!-- SUPABASE CONNECTION -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>
-    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
+      <h1>
+        Grow Your Financial
+        <span>Future</span>
+      </h1>
 
-    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+      <p>
+        Explore investment opportunities and manage your financial goals
+        through Global Trust Fund.
+      </p>
 
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
+      <div class="hero-buttons">
 
-    function showLoggedInNavigation() {
-      document.getElementById("navLogin").hidden = true;
-      document.getElementById("navRegister").hidden = true;
+        <a href="register.html" class="btn btn-primary">
+          Create Account
+        </a>
 
-      document.getElementById("navDashboard").hidden = false;
-      document.getElementById("navMyAccount").hidden = false;
+        <a href="login.html" class="btn btn-outline">
+          Login
+        </a>
 
-      document.getElementById("heroGuestButtons").hidden = true;
-      document.getElementById("heroClientButtons").hidden = false;
+      </div>
 
-      document.getElementById("ctaRegister").hidden = true;
-      document.getElementById("ctaDashboard").hidden = false;
-    }
+    </div>
+  </section>
 
-    function showGuestNavigation() {
-      document.getElementById("navLogin").hidden = false;
-      document.getElementById("navRegister").hidden = false;
 
-      document.getElementById("navDashboard").hidden = true;
-      document.getElementById("navMyAccount").hidden = true;
+  <!-- =========================
+       INVESTMENT PLANS
+  ========================== -->
 
-      document.getElementById("heroGuestButtons").hidden = false;
-      document.getElementById("heroClientButtons").hidden = true;
+  <section class="plans" id="plans">
 
-      document.getElementById("ctaRegister").hidden = false;
-      document.getElementById("ctaDashboard").hidden = true;
-    }
+    <div class="container">
 
-    async function checkLoginStatus() {
-      try {
-        const { data, error } = await supabaseClient.auth.getSession();
+      <div class="section-heading">
 
-        if (error) {
-          console.error("Session check error:", error.message);
-          showGuestNavigation();
-          return;
-        }
+        <h2>Investment Plans</h2>
 
-        if (data.session) {
-          showLoggedInNavigation();
-        } else {
-          showGuestNavigation();
-        }
+        <p>
+          Choose an investment amount that fits your financial goals.
+          Review all applicable terms, fees, risks, and conditions before
+          making an investment decision.
+        </p>
 
-      } catch (error) {
-        console.error("Unable to check login status:", error);
-        showGuestNavigation();
-      }
-    }
+      </div>
 
-    // Update the homepage navigation when login status changes.
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        showLoggedInNavigation();
-      } else {
-        showGuestNavigation();
-      }
-    });
 
-    // Check the existing login session when the homepage opens.
-    checkLoginStatus();
-  </script></body>
+      <div class="plan-grid">
+
+        <div class="plan-card">
+          <h3>Starter</h3>
+          <div class="plan-amount">$100</div>
+          <p>
+            Starting investment amount for users exploring the platform.
+          </p>
+        </div>
+
+
+        <div class="plan-card">
+          <h3>Basic</h3>
+          <div class="plan-amount">$250</div>
+          <p>
+            An option for users looking to increase their investment amount.
+          </p>
+        </div>
+
+
+        <div class="plan-card">
+          <h3>Growth</h3>
+          <div class="plan-amount">$500</div>
+          <p>
+            Designed for users considering a larger investment allocation.
+          </p>
+        </div>
+
+
+        <div class="plan-card">
+          <h3>Premium</h3>
+          <div class="plan-amount">$750</div>
+          <p>
+            A higher investment option subject to applicable terms and risks.
+          </p>
+        </div>
+
+
+        <div class="plan-card">
+          <h3>Professional</h3>
+          <div class="plan-amount">$1,000</div>
+          <p>
+            A larger starting investment amount for eligible users.
+          </p>
+        </div>
+
+      </div>
+
+
+      <p class="plan-note">
+        Investment involves risk. The value of investments may increase or
+        decrease, and past performance does not guarantee future results.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       WHY CHOOSE US
+  ========================== -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Why Choose Global Trust Fund?</h2>
+
+        <p>
+          We aim to provide a clear and accessible experience for users
+          exploring investment services.
+        </p>
+
+      </div>
+
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+
+          <div class="icon">✓</div>
+
+          <h3>Simple Experience</h3>
+
+          <p>
+            Access your account and manage your information through a
+            straightforward online dashboard.
+          </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+          <div class="icon">◆</div>
+
+          <h3>Flexible Options</h3>
+
+          <p>
+            Explore different investment amounts based on your financial
+            objectives and circumstances.
+          </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+          <div class="icon">★</div>
+
+          <h3>Clear Information</h3>
+
+          <p>
+            Important information about risks, terms, privacy, and account
+            services is made available to users.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       HOW IT WORKS
+  ========================== -->
+
+  <section class="plans">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>How It Works</h2>
+
+        <p>
+          Getting started is designed to be simple.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <h3>Create an Account</h3>
+
+          <p>
+            Register for an account using your basic information and create
+            your login credentials.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <h3>Review Your Options</h3>
+
+          <p>
+            Review the available investment information, terms, risks,
+            conditions, and applicable requirements.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <h3>Manage Your Account</h3>
+
+          <p>
+            Access your account dashboard and manage available account
+            services.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       TRUST & TRANSPARENCY
+  ========================== -->
+
+  <section class="trust">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Trust &amp; Transparency</h2>
+
+        <p>
+          Important information should be available before you make financial
+          decisions.
+        </p>
+
+      </div>
+
+
+      <div class="trust-grid">
+
+        <div class="trust-card">
+
+          <h3>Risk Disclosure</h3>
+
+          <p>
+            Investment products carry risks. Returns are not guaranteed and
+            you should consider your financial circumstances before investing.
+          </p>
+
+        </div>
+
+
+        <div class="trust-card">
+
+          <h3>Privacy</h3>
+
+          <p>
+            We provide information about how account and personal information
+            is collected, used, and protected.
+          </p>
+
+        </div>
+
+
+        <div class="trust-card">
+
+          <h3>Terms</h3>
+
+          <p>
+            Users should review the applicable terms and conditions before
+            using the platform or participating in any investment service.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FAQ
+  ========================== -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <p>
+          Some common questions about using the platform.
+        </p>
+
+      </div>
+
+
+      <div class="faq">
+
+        <div class="faq-item">
+
+          <h3>How do I create an account?</h3>
+
+          <p>
+            Select "Create Account" and complete the registration form with
+            your required information.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>How do I access my account?</h3>
+
+          <p>
+            Use the Login button and enter the email address and password
+            associated with your account.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>Are investment returns guaranteed?</h3>
+
+          <p>
+            No investment return should be represented as guaranteed unless
+            it is legally documented and applicable. Investment values can
+            rise or fall, and losses are possible.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>Can I withdraw funds?</h3>
+
+          <p>
+            Available withdrawal services and requirements depend on the
+            applicable account terms and platform functionality.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>Is investing risk-free?</h3>
+
+          <p>
+            No. Investment involves risk, including the possibility of losing
+            some or all of the amount invested.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================== -->
+
+  <section class="cta">
+
+    <div class="container">
+
+      <h2>Start Your Journey</h2>
+
+      <p>
+        Create your account to access the Global Trust Fund platform and
+        review the available account services and investment information.
+      </p>
+
+      <a href="register.html" class="btn btn-primary">
+        Create Account
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          Global Trust Fund
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="about.html">
+            About
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
+          <a href="terms.html">
+            Terms
+          </a>
+
+          <a href="privacy.html">
+            Privacy
+          </a>
+
+          <a href="risk-disclosure.html">
+            Risk Disclosure
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="copyright">
+        © 2003 Global Trust Fund. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
 </html>
