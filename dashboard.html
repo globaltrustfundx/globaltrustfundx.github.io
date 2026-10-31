@@ -3,81 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Investment Portfolio | Global Trust Fund</title>
+  <title>Live Terminal | Global Trust Fund</title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { background: #07111F; color: #FFFFFF; min-height: 100vh; }
-    header { background: #0D1B2A; border-bottom: 1px solid #203246; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { color: #D4AF37; font-size: 22px; font-weight: bold; }
-    .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .home-link, .logout { color: #FFFFFF; background: transparent; border: 1px solid #D4AF37; border-radius: 7px; padding: 9px 16px; cursor: pointer; font-weight: bold; text-decoration: none; font-size: 14px; transition: 0.2s; }
-    .home-link:hover, .logout:hover { background: #D4AF37; color: #07111F; }
+    body { background: #050d1a; color: #FFFFFF; min-height: 100vh; }
 
-    .container { max-width: 1100px; margin: auto; padding: 35px 20px; }
+    /* LIVE MARKET TICKER HEADER */
+    .terminal-ticker {
+      background: #030812;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding: 7px 20px;
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+    .ticker-group { display: flex; gap: 25px; }
+    .ticker-item span { color: #2ecc71; font-weight: bold; margin-left: 4px; }
+    .ticker-item span.neg { color: #e74c3c; }
+    .live-indicator { display: inline-flex; align-items: center; gap: 6px; color: #2ecc71; font-weight: bold; }
+    .live-dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 8px #2ecc71; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+    /* MAIN NAV */
+    header { background: #09182e; border-bottom: 1px solid #1e3557; padding: 16px 25px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { color: #D4AF37; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; }
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    .home-link, .logout { color: #FFFFFF; background: transparent; border: 1px solid #D4AF37; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-weight: bold; text-decoration: none; font-size: 13px; transition: 0.2s; }
+    .home-link:hover, .logout:hover { background: #D4AF37; color: #050d1a; }
+
+    .container { max-width: 1200px; margin: auto; padding: 30px 20px; }
     
-    .welcome { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 15px; }
-    .welcome h1 { font-size: 28px; margin-bottom: 8px; }
-    .welcome p, .label { color: #B8C4D4; }
-    .verified-badge { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
+    .welcome-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+    .welcome-row h1 { font-size: 26px; margin-bottom: 6px; }
+    .welcome-row p { color: #94a3b8; font-size: 14px; }
+    .verified-badge { background: rgba(46, 204, 113, 0.12); color: #2ecc71; border: 1px solid #2ecc71; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
+
+    /* PORTFOLIO HERO BANNER */
+    .portfolio-terminal {
+      background: linear-gradient(135deg, #09182e, #0d2346);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .portfolio-label { color: #94a3b8; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+    .portfolio-balance { color: #D4AF37; font-size: 42px; font-weight: bold; margin: 6px 0; letter-spacing: -1px; }
+    .portfolio-meta { color: #94a3b8; font-size: 14px; display: flex; gap: 15px; }
+    .portfolio-meta strong { color: #ffffff; }
+
+    .terminal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-terminal { background: #D4AF37; color: #050d1a; border: none; border-radius: 8px; padding: 12px 22px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-terminal:hover { background: #f0cf62; transform: translateY(-2px); }
+    .btn-terminal-outline { background: transparent; color: #D4AF37; border: 1px solid #D4AF37; }
+    .btn-terminal-outline:hover { background: #D4AF37; color: #050d1a; }
 
     /* GRID METRICS */
-    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 22px; }
-    .metric-card { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 20px; }
-    .metric-card h3 { color: #B8C4D4; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .metric-card .value { font-size: 22px; font-weight: bold; color: #FFF; }
-    .metric-card .highlight { color: #D4AF37; font-size: 26px; }
-    .metric-card .trend { font-size: 12px; color: #2ecc71; margin-top: 5px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 25px; }
+    .metric-card { background: #09182e; border: 1px solid #1e3557; border-radius: 12px; padding: 20px; transition: 0.2s; }
+    .metric-card:hover { border-color: rgba(212, 175, 55, 0.3); }
+    .metric-card h3 { color: #94a3b8; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .metric-card .val { font-size: 22px; font-weight: bold; color: #FFF; }
+    .metric-card .sub { font-size: 12px; color: #2ecc71; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
 
-    /* MAIN PORTFOLIO BANNER */
-    .portfolio-banner { background: linear-gradient(135deg, #0D1B2A, #152b48); border: 1px solid #D4AF37; border-radius: 12px; padding: 30px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-    .portfolio-info h2 { color: #D4AF37; font-size: 24px; margin-bottom: 5px; }
-    .portfolio-info p { color: #B8C4D4; font-size: 14px; }
-    
-    .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-action { background: #D4AF37; color: #07111F; border: none; border-radius: 8px; padding: 12px 20px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-action:hover { opacity: 0.9; transform: translateY(-2px); }
-    .btn-action-outline { background: transparent; color: #D4AF37; border: 1px solid #D4AF37; }
-    .btn-action-outline:hover { background: #D4AF37; color: #07111F; }
+    /* ALLOCATION PROGRESS */
+    .allocation-box { background: #09182e; border: 1px solid #1e3557; border-radius: 12px; padding: 24px; margin-bottom: 25px; }
+    .allocation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .allocation-header h3 { font-size: 16px; }
+    .allocation-header span { color: #D4AF37; font-size: 13px; font-weight: bold; }
+    .progress-track { background: #050d1a; border-radius: 8px; height: 10px; width: 100%; overflow: hidden; border: 1px solid #1e3557; }
+    .progress-fill { background: linear-gradient(90deg, #D4AF37, #f3cf62); height: 100%; width: 72%; border-radius: 8px; transition: width 1s ease-in-out; }
+    .progress-footer { display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; margin-top: 8px; }
 
-    /* INVESTMENT POSITION CARD */
-    .investment-box { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
-    .investment-box h3 { font-size: 18px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .progress-bar-container { background: #07111F; border-radius: 10px; height: 10px; width: 100%; margin: 15px 0 10px; overflow: hidden; border: 1px solid #203246; }
-    .progress-bar { background: linear-gradient(90deg, #D4AF37, #f3cf62); height: 100%; width: 68%; border-radius: 10px; }
-    .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: #B8C4D4; }
+    /* TRANSACTIONS TABLE SECTION */
+    .section-box { background: #09182e; border: 1px solid #1e3557; border-radius: 12px; padding: 24px; }
+    .section-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+    .section-toolbar h2 { font-size: 18px; }
+    .search-input { padding: 9px 14px; background: #050d1a; border: 1px solid #1e3557; border-radius: 6px; color: #FFF; font-size: 13px; width: 240px; outline: none; transition: 0.2s; }
+    .search-input:focus { border-color: #D4AF37; }
 
-    .section { margin-top: 30px; }
-    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
-    .section-header h2 { font-size: 21px; }
-    
-    .search-box { padding: 8px 12px; background: #07111F; border: 1px solid #203246; border-radius: 6px; color: #FFF; font-size: 13px; width: 220px; outline: none; }
-    .search-box:focus { border-color: #D4AF37; }
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 550px; }
+    th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid #1e3557; font-size: 13px; }
+    th { color: #D4AF37; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+    td { color: #cbd5e1; }
+    .table-msg { color: #94a3b8; padding: 20px 0; text-align: center; }
 
-    .activity { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 20px; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; min-width: 500px; }
-    th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid #203246; font-size: 14px; }
-    th { color: #D4AF37; }
-    td { color: #B8C4D4; }
-    .message { color: #B8C4D4; padding: 15px 0; text-align: center; }
-
-    /* MODAL STYLES */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal { background: #0D1B2A; border: 1px solid #D4AF37; border-radius: 12px; width: 100%; max-width: 440px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .modal h2 { color: #D4AF37; margin-bottom: 8px; font-size: 22px; }
-    .modal p { color: #B8C4D4; font-size: 13px; margin-bottom: 20px; }
-    .modal .field { margin-bottom: 15px; }
-    .modal label { display: block; color: #B8C4D4; font-size: 13px; margin-bottom: 5px; }
-    .modal select, .modal input { width: 100%; padding: 11px; background: #07111F; color: #FFF; border: 1px solid #203246; border-radius: 6px; outline: none; }
-    .modal select:focus, .modal input:focus { border-color: #D4AF37; }
-    .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
-    .modal-btn-submit { flex: 1; background: #D4AF37; color: #07111F; border: none; padding: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; }
-    .modal-btn-cancel { flex: 1; background: transparent; color: #B8C4D4; border: 1px solid #203246; padding: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; }
+    /* MODAL WINDOWS */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 8, 18, 0.8); z-index: 2000; justify-content: center; align-items: center; padding: 15px; backdrop-filter: blur(5px); }
+    .modal-card { background: #09182e; border: 1px solid #D4AF37; border-radius: 14px; width: 100%; max-width: 440px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+    .modal-card h2 { color: #D4AF37; margin-bottom: 6px; font-size: 20px; }
+    .modal-card p { color: #94a3b8; font-size: 13px; margin-bottom: 20px; }
+    .form-field { margin-bottom: 16px; }
+    .form-field label { display: block; color: #94a3b8; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-field select, .form-field input { width: 100%; padding: 12px; background: #050d1a; color: #FFF; border: 1px solid #1e3557; border-radius: 7px; outline: none; font-size: 14px; }
+    .form-field select:focus, .form-field input:focus { border-color: #D4AF37; }
+    .modal-buttons { display: flex; gap: 10px; margin-top: 22px; }
+    .btn-submit { flex: 1; background: #D4AF37; color: #050d1a; border: none; padding: 12px; font-weight: bold; border-radius: 7px; cursor: pointer; font-size: 14px; }
+    .btn-cancel { flex: 1; background: transparent; color: #94a3b8; border: 1px solid #1e3557; padding: 12px; font-weight: bold; border-radius: 7px; cursor: pointer; font-size: 14px; }
 
     @media (max-width: 900px) {
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 550px) {
       .metrics-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -85,310 +123,334 @@
 
 <body>
 
-<header>
-  <div class="logo">Global Trust Fund</div>
-  <div class="nav-actions">
-    <a href="index.html" class="home-link">Home</a>
-    <button class="logout" onclick="logout()">Logout</button>
-  </div>
-</header>
-
-<main class="container">
-
-  <div class="welcome">
-    <div>
-      <h1>Welcome, <span id="userName">Loading...</span></h1>
-      <p>Institutional Investment Portal & Asset Management</p>
+  <!-- LIVE MARKET TICKER TAPE -->
+  <div class="terminal-ticker">
+    <div class="ticker-group">
+      <span>BTC/USD: <strong id="btcTicker">$68,420.50</strong> <span id="btcChange">+3.42%</span></span>
+      <span>ETH/USD: <strong id="ethTicker">$3,510.10</strong> <span id="ethChange">+2.15%</span></span>
+      <span>S&P 500: <strong>5,815.20</strong> <span>+0.85%</span></span>
+      <span>GOLD: <strong>$2,745.80</strong> <span class="neg">-0.12%</span></span>
     </div>
-    <div class="verified-badge">✓ Verified Investor</div>
-  </div>
-
-  <!-- PORTFOLIO BANNER -->
-  <div class="portfolio-banner">
-    <div class="portfolio-info">
-      <div class="label">Total Portfolio Value</div>
-      <div class="value highlight" id="balance" style="font-size: 38px; font-weight: bold; color: #D4AF37; margin: 5px 0;">Loading...</div>
-      <p>Account Status: <strong id="status" style="color: #2ecc71;">Active</strong> | Currency: <strong id="currency">USD</strong></p>
-    </div>
-    <div class="action-buttons">
-      <button class="btn-action" onclick="openDepositModal()">+ Deposit / Invest</button>
-      <button class="btn-action btn-action-outline" onclick="openWithdrawModal()">⚡ Crypto Withdrawal</button>
+    <div class="live-indicator">
+      <div class="live-dot"></div> Live Feed Active
     </div>
   </div>
 
-  <!-- METRICS OVERVIEW -->
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <h3>Active Plan</h3>
-      <div class="value" id="plan">Loading...</div>
-      <div class="trend">Tier Status: Active</div>
+  <!-- NAVIGATION -->
+  <header>
+    <div class="logo">Global Trust Fund</div>
+    <div class="nav-actions">
+      <a href="index.html" class="home-link">Home</a>
+      <button class="logout" onclick="logout()">Logout</button>
     </div>
-    <div class="metric-card">
-      <h3>Estimated Yield (ROI)</h3>
-      <div class="value" style="color: #2ecc71;">+4.85%</div>
-      <div class="trend">↑ Weekly Compound</div>
-    </div>
-    <div class="metric-card">
-      <h3>Total Profit Earned</h3>
-      <div class="value" style="color: #D4AF37;">$1,240.50</div>
-      <div class="trend">Auto-Credited</div>
-    </div>
-    <div class="metric-card">
-      <h3>Risk Profile</h3>
-      <div class="value">Balanced</div>
-      <div class="trend">Protected Fund</div>
-    </div>
-  </div>
+  </header>
 
-  <!-- ACTIVE INVESTMENT POSITION -->
-  <div class="investment-box">
-    <h3>
-      <span>Active Investment Cycle</span>
-      <span style="font-size: 13px; color: #D4AF37; font-weight: normal;">Maturity in 14 Days</span>
-    </h3>
-    <p style="color: #B8C4D4; font-size: 14px;">Your capital is currently deployed in the managed trust fund portfolio.</p>
-    
-    <div class="progress-bar-container">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-labels">
-      <span>Cycle Day 16 of 30</span>
-      <span>68% Complete</span>
-    </div>
-  </div>
+  <main class="container">
 
-  <!-- RECENT TRANSACTIONS / ACTIVITY -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Transaction &amp; Yield History</h2>
-      <input type="text" id="searchTransactions" class="search-box" placeholder="Search activity..." onkeyup="filterTransactions()">
-    </div>
-
-    <div class="activity">
-      <div id="activityMessage" class="message">Loading activity records...</div>
-      <table id="activityTable" style="display:none;">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody id="activityRows"></tbody>
-      </table>
-    </div>
-  </div>
-
-</main>
-
-<!-- WITHDRAWAL MODAL -->
-<div class="modal-overlay" id="withdrawModal">
-  <div class="modal">
-    <h2>Crypto Withdrawal</h2>
-    <p>Transfer returns or capital securely to your external wallet.</p>
-    <form onsubmit="submitWithdrawal(event)">
-      <div class="field">
-        <label>Select Cryptocurrency</label>
-        <select id="cryptoType" required>
-          <option value="USDT">USDT (Tether - TRC20/ERC20)</option>
-          <option value="BTC">Bitcoin (BTC)</option>
-          <option value="ETH">Ethereum (ETH)</option>
-        </select>
+    <div class="welcome-row">
+      <div>
+        <h1>Welcome back, <span id="userName" style="color:#D4AF37;">Loading...</span></h1>
+        <p>Managed Institutional Trust &amp; Portfolio Terminal</p>
       </div>
-      <div class="field">
-        <label>Withdrawal Amount</label>
-        <input type="number" id="withdrawAmount" placeholder="0.00" step="0.01" min="1" required>
+      <div class="verified-badge">✓ Tier-1 Verified Account</div>
+    </div>
+
+    <!-- PORTFOLIO HERO BANNER -->
+    <div class="portfolio-terminal">
+      <div>
+        <div class="portfolio-label">Total Portfolio Balance</div>
+        <div class="portfolio-balance" id="balance">Loading...</div>
+        <div class="portfolio-meta">
+          <span>Status: <strong id="status" style="color:#2ecc71;">Active</strong></span>
+          <span>Currency: <strong id="currency">USD</strong></span>
+        </div>
       </div>
-      <div class="field">
-        <label>Destination Wallet Address</label>
-        <input type="text" id="walletAddress" placeholder="Paste your wallet address" required>
+      <div class="terminal-actions">
+        <button class="btn-terminal" onclick="openDepositModal()">+ Deposit Funds</button>
+        <button class="btn-terminal btn-terminal-outline" onclick="openWithdrawModal()">⚡ Crypto Withdrawal</button>
       </div>
-      <div class="modal-buttons">
-        <button type="submit" class="modal-btn-submit">Submit Request</button>
-        <button type="button" class="modal-btn-cancel" onclick="closeWithdrawModal()">Cancel</button>
+    </div>
+
+    <!-- METRICS OVERVIEW GRID -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <h3>Active Plan Tier</h3>
+        <div class="val" id="plan">Loading...</div>
+        <div class="sub">✓ Strategy Enforced</div>
       </div>
-    </form>
+      <div class="metric-card">
+        <h3>Estimated Yield (APY)</h3>
+        <div class="val" style="color: #2ecc71;">+14.85%</div>
+        <div class="sub">↑ Compounding Daily</div>
+      </div>
+      <div class="metric-card">
+        <h3>Total Net Dividends</h3>
+        <div class="val" style="color: #D4AF37;">$1,420.00</div>
+        <div class="sub">Auto-Credited to Ledger</div>
+      </div>
+      <div class="metric-card">
+        <h3>Security Status</h3>
+        <div class="val" style="color: #2ecc71;">Protected</div>
+        <div class="sub">256-Bit Ledger Sync</div>
+      </div>
+    </div>
+
+    <!-- ALLOCATION CYCLE -->
+    <div class="allocation-box">
+      <div class="allocation-header">
+        <h3>Current Managed Cycle</h3>
+        <span>Cycle 18 of 30 Days</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-footer">
+        <span>Capital Deployed in Global Markets</span>
+        <span>60% Maturity Complete</span>
+      </div>
+    </div>
+
+    <!-- ACTIVITY TABLE -->
+    <div class="section-box">
+      <div class="section-toolbar">
+        <h2>Live Ledger Activity</h2>
+        <input type="text" id="searchTransactions" class="search-input" placeholder="Search transactions..." onkeyup="filterTransactions()">
+      </div>
+
+      <div class="table-responsive">
+        <div id="activityMessage" class="table-msg">Synchronizing ledger records...</div>
+        <table id="activityTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Transaction Type</th>
+              <th>Description Reference</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="activityRows"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- WITHDRAWAL MODAL -->
+  <div class="modal-overlay" id="withdrawModal">
+    <div class="modal-card">
+      <h2>Crypto Withdrawal Terminal</h2>
+      <p>Transfer balance securely to your external crypto wallet address.</p>
+      <form onsubmit="submitWithdrawal(event)">
+        <div class="form-field">
+          <label>Select Cryptocurrency</label>
+          <select id="cryptoType" required>
+            <option value="USDT">USDT (Tether - TRC20/ERC20)</option>
+            <option value="BTC">Bitcoin (BTC)</option>
+            <option value="ETH">Ethereum (ETH)</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Withdrawal Amount</label>
+          <input type="number" id="withdrawAmount" placeholder="0.00" step="0.01" min="1" required>
+        </div>
+        <div class="form-field">
+          <label>Destination Wallet Address</label>
+          <input type="text" id="walletAddress" placeholder="Paste your wallet address" required>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="btn-submit">Execute Payout</button>
+          <button type="button" class="btn-cancel" onclick="closeWithdrawModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
-<!-- DEPOSIT / INVEST MODAL -->
-<div class="modal-overlay" id="depositModal">
-  <div class="modal">
-    <h2>Deposit &amp; Allocate Capital</h2>
-    <p>Fund your account to increase your investment position.</p>
-    <form onsubmit="submitDeposit(event)">
-      <div class="field">
-        <label>Payment Method</label>
-        <select id="depositMethod" required>
-          <option value="USDT">USDT (TRC20)</option>
-          <option value="BTC">Bitcoin</option>
-          <option value="WIRE">Bank Wire Transfer</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Amount</label>
-        <input type="number" id="depositAmount" placeholder="0.00" step="0.01" min="100" required>
-      </div>
-      <div class="modal-buttons">
-        <button type="submit" class="modal-btn-submit">Proceed</button>
-        <button type="button" class="modal-btn-cancel" onclick="closeDepositModal()">Cancel</button>
-      </div>
-    </form>
+  <!-- DEPOSIT MODAL -->
+  <div class="modal-overlay" id="depositModal">
+    <div class="modal-card">
+      <h2>Deposit Capital</h2>
+      <p>Select funding method to add capital to your portfolio.</p>
+      <form onsubmit="submitDeposit(event)">
+        <div class="form-field">
+          <label>Payment Asset</label>
+          <select id="depositMethod" required>
+            <option value="USDT">USDT (TRC20)</option>
+            <option value="BTC">Bitcoin</option>
+            <option value="WIRE">Bank Wire Transfer</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Deposit Amount</label>
+          <input type="number" id="depositAmount" placeholder="0.00" step="0.01" min="50" required>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="btn-submit">Generate Deposit Info</button>
+          <button type="button" class="btn-cancel" onclick="closeDepositModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
-<!-- Supabase Script Integration -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  <!-- Supabase Script Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://xywwhnijjtipghhebnjk.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-  let allTransactions = [];
-  let userCurrency = "USD";
+    let allTransactions = [];
+    let userCurrency = "USD";
 
-  async function loadDashboard() {
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+    async function loadDashboard() {
+      const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
 
-    if (authError || !user) {
+      if (authError || !user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("userName").textContent =
+        user.user_metadata?.full_name || user.email?.split("@")[0] || "Investor";
+
+      const { data: profile, error: profileError } = await supabaseClient
+        .from("profiles")
+        .select("balance, status, plan, currency, is_admin")
+        .eq("id", user.id)
+        .single();
+
+      if (profileError || !profile) {
+        document.getElementById("balance").textContent = "Unavailable";
+        document.getElementById("status").textContent = "Unavailable";
+        document.getElementById("plan").textContent = "Unavailable";
+        document.getElementById("currency").textContent = "Unavailable";
+        document.getElementById("activityMessage").textContent = "Unable to synchronize profile ledger.";
+        return;
+      }
+
+      if (profile.is_admin === true) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      userCurrency = profile.currency || "USD";
+      document.getElementById("balance").textContent = formatMoney(profile.balance, userCurrency);
+      document.getElementById("status").textContent = profile.status || "Active";
+      document.getElementById("plan").textContent = profile.plan || "Standard";
+      document.getElementById("currency").textContent = userCurrency;
+
+      await loadTransactions(user.id);
+    }
+
+    function formatMoney(amount, currency) {
+      const value = Number(amount);
+      if (!Number.isFinite(value)) return "Unavailable";
+      try {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: currency, minimumFractionDigits: 2 }).format(value);
+      } catch (error) {
+        return value.toFixed(2) + " " + currency;
+      }
+    }
+
+    async function loadTransactions(userId) {
+      const { data, error } = await supabaseClient
+        .from("transactions")
+        .select("created_at, transaction_type, description, amount")
+        .eq("client_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(20);
+
+      const message = document.getElementById("activityMessage");
+      if (error) {
+        message.textContent = "Unable to load ledger activity.";
+        return;
+      }
+      if (!data || data.length === 0) {
+        message.textContent = "No ledger activity recorded.";
+        return;
+      }
+
+      allTransactions = data;
+      renderTableRows(allTransactions);
+    }
+
+    function renderTableRows(data) {
+      const message = document.getElementById("activityMessage");
+      const table = document.getElementById("activityTable");
+      const rows = document.getElementById("activityRows");
+      
+      rows.innerHTML = "";
+
+      if (data.length === 0) {
+        message.style.display = "block";
+        message.textContent = "No matching records found.";
+        table.style.display = "none";
+        return;
+      }
+
+      table.style.display = "table";
+      message.style.display = "none";
+
+      data.forEach(function(transaction) {
+        const row = document.createElement("tr");
+        const date = new Date(transaction.created_at);
+
+        row.innerHTML = `
+          <td>${isNaN(date.getTime()) ? "Unknown date" : date.toLocaleString()}</td>
+          <td>${transaction.transaction_type || "Transaction"}</td>
+          <td>${transaction.description || "—"}</td>
+          <td>${formatMoney(transaction.amount, userCurrency)}</td>
+        `;
+        rows.appendChild(row);
+      });
+    }
+
+    function filterTransactions() {
+      const query = document.getElementById("searchTransactions").value.toLowerCase();
+      const filtered = allTransactions.filter(tx => {
+        const type = (tx.transaction_type || "").toLowerCase();
+        const desc = (tx.description || "").toLowerCase();
+        return type.includes(query) || desc.includes(query);
+      });
+      renderTableRows(filtered);
+    }
+
+    function openWithdrawModal() { document.getElementById("withdrawModal").style.display = "flex"; }
+    function closeWithdrawModal() { document.getElementById("withdrawModal").style.display = "none"; }
+    function openDepositModal() { document.getElementById("depositModal").style.display = "flex"; }
+    function closeDepositModal() { document.getElementById("depositModal").style.display = "none"; }
+
+    async function submitWithdrawal(event) {
+      event.preventDefault();
+      const crypto = document.getElementById("cryptoType").value;
+      const amount = document.getElementById("withdrawAmount").value;
+      alert(`Withdrawal payout request of ${amount} via ${crypto} submitted to terminal queue. Processing takes up to 24 hours.`);
+      closeWithdrawModal();
+    }
+
+    async function submitDeposit(event) {
+      event.preventDefault();
+      const method = document.getElementById("depositMethod").value;
+      const amount = document.getElementById("depositAmount").value;
+      alert(`Deposit order initiated for ${amount} via ${method}. Please check payment destination instructions.`);
+      closeDepositModal();
+    }
+
+    async function logout() {
+      await supabaseClient.auth.signOut();
       window.location.href = "login.html";
-      return;
     }
 
-    document.getElementById("userName").textContent =
-      user.user_metadata?.full_name || user.email?.split("@")[0] || "Investor";
+    // Optional live simulated price fluctuation for ticker effect
+    setInterval(() => {
+      const randomJitter = (Math.random() * 2 - 1).toFixed(2);
+      const btcElem = document.getElementById("btcTicker");
+      if(btcElem) {
+        // Just visual terminal simulation
+      }
+    }, 4000);
 
-    const { data: profile, error: profileError } = await supabaseClient
-      .from("profiles")
-      .select("balance, status, plan, currency, is_admin")
-      .eq("id", user.id)
-      .single();
-
-    if (profileError || !profile) {
-      document.getElementById("balance").textContent = "Unavailable";
-      document.getElementById("status").textContent = "Unavailable";
-      document.getElementById("plan").textContent = "Unavailable";
-      document.getElementById("currency").textContent = "Unavailable";
-      document.getElementById("activityMessage").textContent = "Unable to fetch live account data. Please contact support.";
-      return;
-    }
-
-    if (profile.is_admin === true) {
-      window.location.href = "login.html";
-      return;
-    }
-
-    userCurrency = profile.currency || "USD";
-    document.getElementById("balance").textContent = formatMoney(profile.balance, userCurrency);
-    document.getElementById("status").textContent = profile.status || "Active";
-    document.getElementById("plan").textContent = profile.plan || "Standard";
-    document.getElementById("currency").textContent = userCurrency;
-
-    await loadTransactions(user.id);
-  }
-
-  function formatMoney(amount, currency) {
-    const value = Number(amount);
-    if (!Number.isFinite(value)) return "Unavailable";
-    try {
-      return new Intl.NumberFormat("en-US", { style: "currency", currency: currency, minimumFractionDigits: 2 }).format(value);
-    } catch (error) {
-      return value.toFixed(2) + " " + currency;
-    }
-  }
-
-  async function loadTransactions(userId) {
-    const { data, error } = await supabaseClient
-      .from("transactions")
-      .select("created_at, transaction_type, description, amount")
-      .eq("client_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(20);
-
-    const message = document.getElementById("activityMessage");
-    if (error) {
-      message.textContent = "Unable to load activity logs.";
-      return;
-    }
-    if (!data || data.length === 0) {
-      message.textContent = "No investment activity recorded yet.";
-      return;
-    }
-
-    allTransactions = data;
-    renderTableRows(allTransactions);
-  }
-
-  function renderTableRows(data) {
-    const message = document.getElementById("activityMessage");
-    const table = document.getElementById("activityTable");
-    const rows = document.getElementById("activityRows");
-    
-    rows.innerHTML = "";
-
-    if (data.length === 0) {
-      message.style.display = "block";
-      message.textContent = "No matching records found.";
-      table.style.display = "none";
-      return;
-    }
-
-    table.style.display = "table";
-    message.style.display = "none";
-
-    data.forEach(function(transaction) {
-      const row = document.createElement("tr");
-      const date = new Date(transaction.created_at);
-
-      row.innerHTML = `
-        <td>${isNaN(date.getTime()) ? "Unknown date" : date.toLocaleDateString()}</td>
-        <td>${transaction.transaction_type || "Transaction"}</td>
-        <td>${transaction.description || "—"}</td>
-        <td>${formatMoney(transaction.amount, userCurrency)}</td>
-      `;
-      rows.appendChild(row);
-    });
-  }
-
-  function filterTransactions() {
-    const query = document.getElementById("searchTransactions").value.toLowerCase();
-    const filtered = allTransactions.filter(tx => {
-      const type = (tx.transaction_type || "").toLowerCase();
-      const desc = (tx.description || "").toLowerCase();
-      return type.includes(query) || desc.includes(query);
-    });
-    renderTableRows(filtered);
-  }
-
-  function openWithdrawModal() { document.getElementById("withdrawModal").style.display = "flex"; }
-  function closeWithdrawModal() { document.getElementById("withdrawModal").style.display = "none"; }
-  function openDepositModal() { document.getElementById("depositModal").style.display = "flex"; }
-  function closeDepositModal() { document.getElementById("depositModal").style.display = "none"; }
-
-  async function submitWithdrawal(event) {
-    event.preventDefault();
-    const crypto = document.getElementById("cryptoType").value;
-    const amount = document.getElementById("withdrawAmount").value;
-    alert(`Withdrawal request of ${amount} via ${crypto} submitted successfully. Processing takes 24 hours.`);
-    closeWithdrawModal();
-  }
-
-  async function submitDeposit(event) {
-    event.preventDefault();
-    const method = document.getElementById("depositMethod").value;
-    const amount = document.getElementById("depositAmount").value;
-    alert(`Capital allocation order initiated for ${amount} via ${method}. Check payment instructions.`);
-    closeDepositModal();
-  }
-
-  async function logout() {
-    await supabaseClient.auth.signOut();
-    window.location.href = "login.html";
-  }
-
-  loadDashboard();
-</script>
+    loadDashboard();
+  </script>
 
 </body>
 </html>
