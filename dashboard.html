@@ -1,160 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Global Trust Fund</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Dashboard | Global Trust Fund</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
-    body {
-      background: #07111F;
-      color: #FFFFFF;
-      min-height: 100vh;
-    }
+body {
+  background: #07111F;
+  color: #FFFFFF;
+}
 
-    header {
-      background: #0D1B2A;
-      border-bottom: 1px solid #203246;
-      padding: 18px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+header {
+  background: #0D1B2A;
+  border-bottom: 1px solid #203246;
+  padding: 17px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .logo {
-      color: #D4AF37;
-      font-size: 22px;
-      font-weight: bold;
-    }
+.logo {
+  color: #D4AF37;
+  font-size: 21px;
+  font-weight: bold;
+}
 
-    .logout {
-      color: #FFFFFF;
-      background: transparent;
-      border: 1px solid #D4AF37;
-      border-radius: 7px;
-      padding: 9px 16px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.logout {
+  background: transparent;
+  color: white;
+  border: 1px solid #D4AF37;
+  padding: 9px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 35px 20px;
-    }
+.layout {
+  display: flex;
+  min-height: calc(100vh - 65px);
+}
 
-    .welcome {
-      margin-bottom: 28px;
-    }
+.sidebar {
+  width: 245px;
+  background: #0D1B2A;
+  border-right: 1px solid #203246;
+  padding: 25px 15px;
+  flex-shrink: 0;
+}
 
-    .welcome h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.sidebar h3 {
+  color: #B8C4D4;
+  font-size: 12px;
+  margin: 5px 12px 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .welcome p,
-    .label {
-      color: #B8C4D4;
-    }
+.nav-link {
+  display: block;
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 6px;
+  background: transparent;
+  color: #B8C4D4;
+  border: none;
+  border-radius: 7px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
 
-    .balance-card,
-    .card,
-    .activity {
-      background: #0D1B2A;
-      border: 1px solid #203246;
-      border-radius: 12px;
-      padding: 24px;
-    }
+.nav-link:hover,
+.nav-link.active {
+  background: #172B40;
+  color: #D4AF37;
+}
 
-    .balance-card {
-      margin-bottom: 22px;
-    }
+main {
+  flex: 1;
+  padding: 30px;
+  max-width: 1200px;
+}
 
-    .balance {
-      color: #D4AF37;
-      font-size: 40px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+.view {
+  display: none;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+.view.active {
+  display: block;
+}
 
-    .card h3 {
-      color: #B8C4D4;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+.welcome {
+  margin-bottom: 25px;
+}
 
-    .card p {
-      font-size: 20px;
-      font-weight: bold;
-    }
+.welcome h1 {
+  font-size: 27px;
+  margin-bottom: 9px;
+}
 
-    .section {
-      margin-top: 30px;
-    }
+.welcome p,
+.label {
+  color: #B8C4D4;
+  line-height: 1.6;
+}
 
-    .section h2 {
-      margin-bottom: 15px;
-      font-size: 21px;
-    }
+.balance-card,
+.card,
+.panel {
+  background: #0D1B2A;
+  border: 1px solid #203246;
+  border-radius: 12px;
+  padding: 23px;
+  margin-bottom: 20px;
+}
 
-    .activity {
-      overflow-x: auto;
-    }
+.balance {
+  color: #D4AF37;
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 10px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 500px;
-    }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
-    th, td {
-      text-align: left;
-      padding: 13px 10px;
-      border-bottom: 1px solid #203246;
-      font-size: 14px;
-    }
+.card h3 {
+  color: #B8C4D4;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
 
-    th {
-      color: #D4AF37;
-    }
+.card p {
+  font-size: 19px;
+  font-weight: bold;
+}
 
-    td {
-      color: #B8C4D4;
-    }
+.section-title {
+  margin: 28px 0 15px;
+  font-size: 21px;
+}
 
-    .message {
-      color: #B8C4D4;
-      padding: 12px 0;
-      line-height: 1.6;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 550px;
+}
 
-    .error {
-      color: #FF9999;
-    }
+th, td {
+  text-align: left;
+  padding: 13px 10px;
+  border-bottom: 1px solid #203246;
+  font-size: 14px;
+}
 
-    @media (max-width: 700px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
+th {
+  color: #D4AF37;
+}
 
-      .balance {
-        font-size: 32px;
-      }
-    }
-  </style>
+td {
+  color: #B8C4D4;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.message {
+  color: #B8C4D4;
+  padding: 12px 0;
+  line-height: 1.7;
+}
+
+.feature-list {
+  color: #B8C4D4;
+  line-height: 2;
+  padding-left: 20px;
+}
+
+.feature-list li {
+  margin-bottom: 5px;
+}
+
+.info-box {
+  background: #07111F;
+  border: 1px solid #203246;
+  border-left: 3px solid #D4AF37;
+  padding: 16px;
+  border-radius: 7px;
+  color: #B8C4D4;
+  line-height: 1.7;
+  margin-top: 18px;
+}
+
+.gold {
+  color: #D4AF37;
+}
+
+@media(max-width: 800px) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #203246;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .sidebar h3 {
+    width: 100%;
+    margin: 5px 8px;
+  }
+
+  .nav-link {
+    width: auto;
+    padding: 10px 12px;
+    margin: 0;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 20px 14px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .balance {
+    font-size: 31px;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -164,224 +257,442 @@
   <button class="logout" onclick="logout()">Logout</button>
 </header>
 
-<main class="container">
+<div class="layout">
 
-  <div class="welcome">
-    <h1>Welcome, <span id="userName">Loading...</span></h1>
-    <p>Here's an overview of your account.</p>
-  </div>
+  <aside class="sidebar">
+    <h3>Client Menu</h3>
 
-  <div class="balance-card">
-    <div class="label">Account Balance</div>
-    <div class="balance" id="balance">Loading...</div>
-  </div>
+    <a href="index.html" class="nav-link">⌂ Home</a>
 
-  <div class="cards">
+    <button class="nav-link active" onclick="showView('dashboard', this)">
+      ▦ Dashboard
+    </button>
 
-    <div class="card">
-      <h3>Account Status</h3>
-      <p id="status">Loading...</p>
-    </div>
+    <button class="nav-link" onclick="showView('deposit', this)">
+      ↓ Deposit
+    </button>
 
-    <div class="card">
-      <h3>Investment Plan</h3>
-      <p id="plan">Loading...</p>
-    </div>
+    <button class="nav-link" onclick="showView('withdraw', this)">
+      ↑ Withdraw
+    </button>
 
-    <div class="card">
-      <h3>Account Currency</h3>
-      <p id="currency">Loading...</p>
-    </div>
+    <button class="nav-link" onclick="showView('transactions', this)">
+      ⇄ Transactions
+    </button>
 
-  </div>
+    <button class="nav-link" onclick="showView('plans', this)">
+      ◈ Investment Plans
+    </button>
 
-  <div class="section">
-    <h2>Recent Activity</h2>
+    <button class="nav-link" onclick="showView('profile', this)">
+      ♙ My Profile
+    </button>
 
-    <div class="activity">
-      <div id="activityMessage" class="message">
-        Loading transactions...
+    <button class="nav-link" onclick="showView('notifications', this)">
+      ♧ Notifications
+    </button>
+
+    <button class="nav-link" onclick="showView('support', this)">
+      ✉ Support
+    </button>
+  </aside>
+
+  <main>
+
+    <!-- DASHBOARD -->
+    <section class="view active" id="dashboard">
+
+      <div class="welcome">
+        <h1>Welcome, <span id="userName">Loading...</span></h1>
+        <p>Here's an overview of your account.</p>
       </div>
 
-      <table id="activityTable" style="display:none;">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody id="activityRows"></tbody>
-      </table>
-    </div>
-  </div>
+      <div class="balance-card">
+        <div class="label">Account Balance</div>
+        <div class="balance" id="balance">Loading...</div>
+      </div>
 
-</main>
+      <div class="cards">
+
+        <div class="card">
+          <h3>Account Status</h3>
+          <p id="status">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>Investment Plan</h3>
+          <p id="plan">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>Account Currency</h3>
+          <p id="currency">Loading...</p>
+        </div>
+
+      </div>
+
+      <h2 class="section-title">Recent Activity</h2>
+
+      <div class="panel table-wrap">
+        <div id="recentMessage" class="message">
+          Loading transactions...
+        </div>
+
+        <table id="recentTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="recentRows"></tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- DEPOSIT -->
+    <section class="view" id="deposit">
+      <h1>Deposit</h1>
+
+      <div class="panel">
+        <h3 class="gold">Make a Deposit</h3>
+
+        <p class="message">
+          This section will provide clients with deposit instructions
+          and a secure form for submitting deposit requests and
+          payment evidence.
+        </p>
+
+        <div class="info-box">
+          Deposit submission is not yet enabled. Please wait until
+          the secure deposit request system is connected.
+        </div>
+      </div>
+    </section>
+
+    <!-- WITHDRAW -->
+    <section class="view" id="withdraw">
+      <h1>Withdraw</h1>
+
+      <div class="panel">
+        <h3 class="gold">Withdrawal Methods</h3>
+
+        <ul class="feature-list">
+          <li>Bank Transfer</li>
+          <li>Crypto Wallet</li>
+          <li>PayPal</li>
+          <li>Skrill</li>
+          <li>Payoneer</li>
+        </ul>
+
+        <div class="info-box">
+          Withdrawal requests will be enabled after the secure
+          request system and administrator review process are connected.
+          No funds will be deducted through this page at this stage.
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSACTIONS -->
+    <section class="view" id="transactions">
+      <h1>Transactions</h1>
+
+      <div class="panel table-wrap">
+        <div id="allTransactionsMessage" class="message">
+          Loading transaction history...
+        </div>
+
+        <table id="allTransactionsTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="allTransactionsRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PLANS -->
+    <section class="view" id="plans">
+      <h1>Investment Plans</h1>
+
+      <div class="panel">
+        <h3 class="gold">Your Current Plan</h3>
+        <p class="message" id="currentPlan">
+          Loading your investment plan...
+        </p>
+
+        <div class="info-box">
+          Available investment plans, terms and conditions will
+          be displayed here once the official plan details are added.
+          Please refer to the published terms before making an investment.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view" id="profile">
+      <h1>My Profile</h1>
+
+      <div class="panel">
+        <h3 class="gold">Account Information</h3>
+
+        <p class="message">
+          Name: <span id="profileName">Loading...</span>
+        </p>
+
+        <p class="message">
+          Email: <span id="profileEmail">Loading...</span>
+        </p>
+
+        <p class="message">
+          Account Status: <span id="profileStatus">Loading...</span>
+        </p>
+
+        <p class="message">
+          Investment Plan: <span id="profilePlan">Loading...</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- NOTIFICATIONS -->
+    <section class="view" id="notifications">
+      <h1>Notifications</h1>
+
+      <div class="panel">
+        <p class="message">
+          Account notifications and deposit or withdrawal request
+          updates will appear here when the notification system is connected.
+        </p>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section class="view" id="support">
+      <h1>Support</h1>
+
+      <div class="panel">
+        <h3 class="gold">Client Assistance</h3>
+
+        <p class="message">
+          Need help with your account? Contact the Global Trust Fund
+          support team through the official contact page.
+        </p>
+
+        <a href="contact.html" class="nav-link gold">
+          Contact Support →
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  const SUPABASE_URL =
-    "https://xywwhnijjtipghhebnjk.supabase.co";
+const SUPABASE_URL =
+  "https://xywwhnijjtipghhebnjk.supabase.co";
 
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
 
-  const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
-  async function loadDashboard() {
-    const {
-      data: { user },
-      error: authError
-    } = await supabaseClient.auth.getUser();
+let clientCurrency = "USD";
 
-    if (authError || !user) {
-      window.location.href = "login.html";
-      return;
-    }
+function showView(viewId, button) {
+  document.querySelectorAll(".view").forEach(section => {
+    section.classList.remove("active");
+  });
 
-    document.getElementById("userName").textContent =
-      user.user_metadata?.full_name ||
-      user.email?.split("@")[0] ||
-      "User";
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.classList.remove("active");
+  });
 
-    const { data: profile, error: profileError } =
-      await supabaseClient
-        .from("profiles")
-        .select("balance, status, plan, currency, is_admin")
-        .eq("id", user.id)
-        .single();
+  document.getElementById(viewId).classList.add("active");
 
-    if (profileError || !profile) {
-      document.getElementById("balance").textContent =
-        "Unavailable";
+  if (button) {
+    button.classList.add("active");
+  }
+}
 
-      document.getElementById("status").textContent =
-        "Unavailable";
+function formatMoney(amount, currency) {
+  const value = Number(amount);
 
-      document.getElementById("plan").textContent =
-        "Unavailable";
-
-      document.getElementById("currency").textContent =
-        "Unavailable";
-
-      document.getElementById("activityMessage").textContent =
-        "We couldn't load your account information. Please contact support.";
-
-      return;
-    }
-
-    if (profile.is_admin === true) {
-      window.location.href = "login.html";
-      return;
-    }
-
-    const currency = profile.currency || "USD";
-
-    document.getElementById("balance").textContent =
-      formatMoney(profile.balance, currency);
-
-    document.getElementById("status").textContent =
-      profile.status || "Active";
-
-    document.getElementById("plan").textContent =
-      profile.plan || "Standard";
-
-    document.getElementById("currency").textContent =
-      currency;
-
-    await loadTransactions(user.id, currency);
+  if (!Number.isFinite(value)) {
+    return "Unavailable";
   }
 
-  function formatMoney(amount, currency) {
-    const value = Number(amount);
-
-    if (!Number.isFinite(value)) {
-      return "Unavailable";
-    }
-
-    try {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: currency,
-        minimumFractionDigits: 2
-      }).format(value);
-    } catch (error) {
-      return value.toFixed(2) + " " + currency;
-    }
+  try {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency,
+      minimumFractionDigits: 2
+    }).format(value);
+  } catch (error) {
+    return value.toFixed(2) + " " + currency;
   }
+}
 
-  async function loadTransactions(userId, currency) {
-    const { data, error } = await supabaseClient
-      .from("transactions")
-      .select("created_at, transaction_type, description, amount")
-      .eq("client_id", userId)
-      .order("created_at", { ascending: false })
-      .limit(10);
+function addTransactionRows(data, targetId) {
+  const rows = document.getElementById(targetId);
+  rows.innerHTML = "";
 
-    const message = document.getElementById("activityMessage");
+  data.forEach(transaction => {
+    const row = document.createElement("tr");
 
-    if (error) {
-      message.textContent =
-        "Unable to load recent activity. Please try again later.";
-      return;
-    }
+    const date = new Date(transaction.created_at);
 
-    if (!data || data.length === 0) {
-      message.textContent = "No recent activity to display.";
-      return;
-    }
+    const values = [
+      isNaN(date.getTime()) ? "Unknown date" : date.toLocaleDateString(),
+      transaction.transaction_type || "Transaction",
+      transaction.description || "—",
+      formatMoney(transaction.amount, clientCurrency)
+    ];
 
-    document.getElementById("activityTable").style.display = "table";
-    message.style.display = "none";
-
-    const rows = document.getElementById("activityRows");
-
-    data.forEach(function(transaction) {
-      const row = document.createElement("tr");
-
-      const date = new Date(transaction.created_at);
-
-      const dateCell = document.createElement("td");
-      dateCell.textContent = isNaN(date.getTime())
-        ? "Unknown date"
-        : date.toLocaleDateString();
-
-      const typeCell = document.createElement("td");
-      typeCell.textContent = transaction.transaction_type || "Transaction";
-
-      const descriptionCell = document.createElement("td");
-      descriptionCell.textContent = transaction.description || "—";
-
-      const amountCell = document.createElement("td");
-      amountCell.textContent =
-        formatMoney(transaction.amount, currency);
-
-      row.appendChild(dateCell);
-      row.appendChild(typeCell);
-      row.appendChild(descriptionCell);
-      row.appendChild(amountCell);
-
-      rows.appendChild(row);
+    values.forEach(value => {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      row.appendChild(cell);
     });
+
+    rows.appendChild(row);
+  });
+}
+
+async function loadTransactions(userId) {
+  const { data, error } = await supabaseClient
+    .from("transactions")
+    .select("created_at, transaction_type, description, amount")
+    .eq("client_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    document.getElementById("recentMessage").textContent =
+      "Unable to load recent activity.";
+
+    document.getElementById("allTransactionsMessage").textContent =
+      "Unable to load transaction history.";
+
+    return;
   }
 
-  async function logout() {
-    const { error } = await supabaseClient.auth.signOut();
+  if (!data || data.length === 0) {
+    document.getElementById("recentMessage").textContent =
+      "No recent activity to display.";
 
-    if (error) {
-      alert("Unable to log out. Please try again.");
-      return;
-    }
+    document.getElementById("allTransactionsMessage").textContent =
+      "No transactions found.";
 
+    return;
+  }
+
+  const recent = data.slice(0, 10);
+
+  addTransactionRows(recent, "recentRows");
+  addTransactionRows(data, "allTransactionsRows");
+
+  document.getElementById("recentTable").style.display = "table";
+  document.getElementById("recentMessage").style.display = "none";
+
+  document.getElementById("allTransactionsTable").style.display = "table";
+  document.getElementById("allTransactionsMessage").style.display = "none";
+}
+
+async function loadDashboard() {
+  const {
+    data: { user },
+    error: authError
+  } = await supabaseClient.auth.getUser();
+
+  if (authError || !user) {
     window.location.href = "login.html";
+    return;
   }
 
-  loadDashboard();
+  const name =
+    user.user_metadata?.full_name ||
+    user.email?.split("@")[0] ||
+    "User";
+
+  document.getElementById("userName").textContent = name;
+  document.getElementById("profileName").textContent = name;
+  document.getElementById("profileEmail").textContent = user.email || "Unavailable";
+
+  const { data: profile, error: profileError } =
+    await supabaseClient
+      .from("profiles")
+      .select("balance, status, plan, currency, is_admin")
+      .eq("id", user.id)
+      .single();
+
+  if (profileError || !profile) {
+    document.getElementById("balance").textContent = "Unavailable";
+    document.getElementById("status").textContent = "Unavailable";
+    document.getElementById("plan").textContent = "Unavailable";
+    document.getElementById("currency").textContent = "Unavailable";
+
+    document.getElementById("recentMessage").textContent =
+      "We couldn't load your account information. Please contact support.";
+
+    return;
+  }
+
+  if (profile.is_admin === true) {
+    await supabaseClient.auth.signOut();
+    window.location.href = "login.html";
+    return;
+  }
+
+  clientCurrency = profile.currency || "USD";
+
+  document.getElementById("balance").textContent =
+    formatMoney(profile.balance, clientCurrency);
+
+  document.getElementById("status").textContent =
+    profile.status || "Active";
+
+  document.getElementById("plan").textContent =
+    profile.plan || "Standard";
+
+  document.getElementById("currency").textContent =
+    clientCurrency;
+
+  document.getElementById("currentPlan").textContent =
+    profile.plan || "Standard";
+
+  document.getElementById("profileStatus").textContent =
+    profile.status || "Active";
+
+  document.getElementById("profilePlan").textContent =
+    profile.plan || "Standard";
+
+  await loadTransactions(user.id);
+}
+
+async function logout() {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert("Unable to log out. Please try again.");
+    return;
+  }
+
+  window.location.href = "login.html";
+}
+
+loadDashboard();
 </script>
 
 </body>
