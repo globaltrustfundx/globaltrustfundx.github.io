@@ -11,39 +11,49 @@
     header { background: #0D1B2A; border-bottom: 1px solid #203246; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
     .logo { color: #D4AF37; font-size: 22px; font-weight: bold; }
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .home-link, .logout { color: #FFFFFF; background: transparent; border: 1px solid #D4AF37; border-radius: 7px; padding: 9px 16px; cursor: pointer; font-weight: bold; text-decoration: none; font-size: 14px; }
+    .home-link, .logout { color: #FFFFFF; background: transparent; border: 1px solid #D4AF37; border-radius: 7px; padding: 9px 16px; cursor: pointer; font-weight: bold; text-decoration: none; font-size: 14px; transition: 0.2s; }
     .home-link:hover, .logout:hover { background: #D4AF37; color: #07111F; }
 
     .container { max-width: 1100px; margin: auto; padding: 35px 20px; }
-    .welcome { margin-bottom: 28px; }
+    
+    .welcome { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 15px; }
     .welcome h1 { font-size: 28px; margin-bottom: 8px; }
     .welcome p, .label { color: #B8C4D4; }
+    .verified-badge { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
 
     .balance-card, .card, .activity { background: #0D1B2A; border: 1px solid #203246; border-radius: 12px; padding: 24px; }
-    .balance-card { margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    .balance-card { margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
     .balance { color: #D4AF37; font-size: 40px; font-weight: bold; margin-top: 10px; }
 
-    .withdraw-btn { background: #D4AF37; color: #07111F; border: none; border-radius: 8px; padding: 12px 20px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.2s; }
-    .withdraw-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-action { background: #D4AF37; color: #07111F; border: none; border-radius: 8px; padding: 12px 18px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-action:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-action-outline { background: transparent; color: #D4AF37; border: 1px solid #D4AF37; }
+    .btn-action-outline:hover { background: #D4AF37; color: #07111F; }
 
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .card h3 { color: #B8C4D4; font-size: 14px; margin-bottom: 12px; }
     .card p { font-size: 20px; font-weight: bold; }
 
     .section { margin-top: 30px; }
-    .section h2 { margin-bottom: 15px; font-size: 21px; }
-    .activity { overflow-x: auto; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+    .section-header h2 { font-size: 21px; }
+    
+    .search-box { padding: 8px 12px; background: #07111F; border: 1px solid #203246; border-radius: 6px; color: #FFF; font-size: 13px; width: 220px; outline: none; }
+    .search-box:focus { border-color: #D4AF37; }
 
+    .activity { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 500px; }
     th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid #203246; font-size: 14px; }
     th { color: #D4AF37; }
     td { color: #B8C4D4; }
-    .message { color: #B8C4D4; padding: 12px 0; line-height: 1.6; }
+    .message { color: #B8C4D4; padding: 12px 0; line-height: 1.6; text-align: center; }
 
     /* MODAL STYLES */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
-    .modal { background: #0D1B2A; border: 1px solid #D4AF37; border-radius: 12px; width: 100%; max-width: 420px; padding: 30px; }
-    .modal h2 { color: #D4AF37; margin-bottom: 15px; font-size: 22px; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+    .modal { background: #0D1B2A; border: 1px solid #D4AF37; border-radius: 12px; width: 100%; max-width: 440px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .modal h2 { color: #D4AF37; margin-bottom: 8px; font-size: 22px; }
+    .modal p { color: #B8C4D4; font-size: 13px; margin-bottom: 20px; }
     .modal .field { margin-bottom: 15px; }
     .modal label { display: block; color: #B8C4D4; font-size: 13px; margin-bottom: 5px; }
     .modal select, .modal input { width: 100%; padding: 11px; background: #07111F; color: #FFF; border: 1px solid #203246; border-radius: 6px; outline: none; }
@@ -72,17 +82,21 @@
 <main class="container">
 
   <div class="welcome">
-    <h1>Welcome, <span id="userName">Loading...</span></h1>
-    <p>Here's an overview of your account.</p>
+    <div>
+      <h1>Welcome, <span id="userName">Loading...</span></h1>
+      <p>Here's an overview of your wealth portfolio.</p>
+    </div>
+    <div class="verified-badge">✓ Verified Account</div>
   </div>
 
   <div class="balance-card">
     <div>
-      <div class="label">Account Balance</div>
+      <div class="label">Total Account Balance</div>
       <div class="balance" id="balance">Loading...</div>
     </div>
-    <div>
-      <button class="withdraw-btn" onclick="openWithdrawModal()">⚡ Crypto Withdrawal</button>
+    <div class="action-buttons">
+      <button class="btn-action" onclick="openDepositModal()">+ Deposit Funds</button>
+      <button class="btn-action btn-action-outline" onclick="openWithdrawModal()">⚡ Withdraw</button>
     </div>
   </div>
 
@@ -102,7 +116,11 @@
   </div>
 
   <div class="section">
-    <h2>Recent Activity</h2>
+    <div class="section-header">
+      <h2>Recent Activity</h2>
+      <input type="text" id="searchTransactions" class="search-box" placeholder="Search transactions..." onkeyup="filterTransactions()">
+    </div>
+
     <div class="activity">
       <div id="activityMessage" class="message">Loading transactions...</div>
       <table id="activityTable" style="display:none;">
@@ -125,6 +143,7 @@
 <div class="modal-overlay" id="withdrawModal">
   <div class="modal">
     <h2>Crypto Withdrawal</h2>
+    <p>Transfer funds securely to your external crypto wallet address.</p>
     <form onsubmit="submitWithdrawal(event)">
       <div class="field">
         <label>Select Cryptocurrency</label>
@@ -136,15 +155,41 @@
       </div>
       <div class="field">
         <label>Withdrawal Amount</label>
-        <input type="number" id="withdrawAmount" placeholder="Enter amount" step="0.01" min="1" required>
+        <input type="number" id="withdrawAmount" placeholder="0.00" step="0.01" min="1" required>
       </div>
       <div class="field">
         <label>Destination Wallet Address</label>
-        <input type="text" id="walletAddress" placeholder="Paste wallet address here" required>
+        <input type="text" id="walletAddress" placeholder="Paste your wallet address" required>
       </div>
       <div class="modal-buttons">
-        <button type="submit" class="modal-btn-submit">Confirm Withdrawal</button>
+        <button type="submit" class="modal-btn-submit">Submit Request</button>
         <button type="button" class="modal-btn-cancel" onclick="closeWithdrawModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- DEPOSIT MODAL -->
+<div class="modal-overlay" id="depositModal">
+  <div class="modal">
+    <h2>Fund Your Account</h2>
+    <p>Select your preferred deposit method or contact support for wire instructions.</p>
+    <form onsubmit="submitDeposit(event)">
+      <div class="field">
+        <label>Deposit Method</label>
+        <select id="depositMethod" required>
+          <option value="USDT">USDT (TRC20)</option>
+          <option value="BTC">Bitcoin</option>
+          <option value="WIRE">Bank Wire Transfer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Amount to Deposit</label>
+        <input type="number" id="depositAmount" placeholder="0.00" step="0.01" min="10" required>
+      </div>
+      <div class="modal-buttons">
+        <button type="submit" class="modal-btn-submit">Proceed to Payment</button>
+        <button type="button" class="modal-btn-cancel" onclick="closeDepositModal()">Cancel</button>
       </div>
     </form>
   </div>
@@ -156,7 +201,8 @@
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3hcNCJlDcno7_jcWRihO3g_rYZ6Eim4";
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-  let userGlobalId = null;
+  let allTransactions = [];
+  let userCurrency = "USD";
 
   async function loadDashboard() {
     const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
@@ -165,8 +211,6 @@
       window.location.href = "login.html";
       return;
     }
-
-    userGlobalId = user.id;
 
     document.getElementById("userName").textContent =
       user.user_metadata?.full_name || user.email?.split("@")[0] || "User";
@@ -191,13 +235,13 @@
       return;
     }
 
-    const currency = profile.currency || "USD";
-    document.getElementById("balance").textContent = formatMoney(profile.balance, currency);
+    userCurrency = profile.currency || "USD";
+    document.getElementById("balance").textContent = formatMoney(profile.balance, userCurrency);
     document.getElementById("status").textContent = profile.status || "Active";
     document.getElementById("plan").textContent = profile.plan || "Standard";
-    document.getElementById("currency").textContent = currency;
+    document.getElementById("currency").textContent = userCurrency;
 
-    await loadTransactions(user.id, currency);
+    await loadTransactions(user.id);
   }
 
   function formatMoney(amount, currency) {
@@ -210,13 +254,13 @@
     }
   }
 
-  async function loadTransactions(userId, currency) {
+  async function loadTransactions(userId) {
     const { data, error } = await supabaseClient
       .from("transactions")
       .select("created_at, transaction_type, description, amount")
       .eq("client_id", userId)
       .order("created_at", { ascending: false })
-      .limit(10);
+      .limit(20);
 
     const message = document.getElementById("activityMessage");
     if (error) {
@@ -228,10 +272,26 @@
       return;
     }
 
-    document.getElementById("activityTable").style.display = "table";
-    message.style.display = "none";
+    allTransactions = data;
+    renderTableRows(allTransactions);
+  }
+
+  function renderTableRows(data) {
+    const message = document.getElementById("activityMessage");
+    const table = document.getElementById("activityTable");
     const rows = document.getElementById("activityRows");
+    
     rows.innerHTML = "";
+
+    if (data.length === 0) {
+      message.style.display = "block";
+      message.textContent = "No matching transactions found.";
+      table.style.display = "none";
+      return;
+    }
+
+    table.style.display = "table";
+    message.style.display = "none";
 
     data.forEach(function(transaction) {
       const row = document.createElement("tr");
@@ -241,28 +301,41 @@
         <td>${isNaN(date.getTime()) ? "Unknown date" : date.toLocaleDateString()}</td>
         <td>${transaction.transaction_type || "Transaction"}</td>
         <td>${transaction.description || "—"}</td>
-        <td>${formatMoney(transaction.amount, currency)}</td>
+        <td>${formatMoney(transaction.amount, userCurrency)}</td>
       `;
       rows.appendChild(row);
     });
   }
 
-  function openWithdrawModal() {
-    document.getElementById("withdrawModal").style.display = "flex";
+  function filterTransactions() {
+    const query = document.getElementById("searchTransactions").value.toLowerCase();
+    const filtered = allTransactions.filter(tx => {
+      const type = (tx.transaction_type || "").toLowerCase();
+      const desc = (tx.description || "").toLowerCase();
+      return type.includes(query) || desc.includes(query);
+    });
+    renderTableRows(filtered);
   }
 
-  function closeWithdrawModal() {
-    document.getElementById("withdrawModal").style.display = "none";
-  }
+  function openWithdrawModal() { document.getElementById("withdrawModal").style.display = "flex"; }
+  function closeWithdrawModal() { document.getElementById("withdrawModal").style.display = "none"; }
+  function openDepositModal() { document.getElementById("depositModal").style.display = "flex"; }
+  function closeDepositModal() { document.getElementById("depositModal").style.display = "none"; }
 
   async function submitWithdrawal(event) {
     event.preventDefault();
     const crypto = document.getElementById("cryptoType").value;
     const amount = document.getElementById("withdrawAmount").value;
-    const address = document.getElementById("walletAddress").value;
-
-    alert(`Withdrawal request of ${amount} via ${crypto} submitted successfully!\nDestination: ${address}\nProcessing may take up to 24 hours.`);
+    alert(`Withdrawal request of ${amount} via ${crypto} submitted successfully! Processing takes up to 24 hours.`);
     closeWithdrawModal();
+  }
+
+  async function submitDeposit(event) {
+    event.preventDefault();
+    const method = document.getElementById("depositMethod").value;
+    const amount = document.getElementById("depositAmount").value;
+    alert(`Deposit order initiated for ${amount} via ${method}. Please contact support or check instructions for payment address.`);
+    closeDepositModal();
   }
 
   async function logout() {
