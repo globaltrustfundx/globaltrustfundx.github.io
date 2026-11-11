@@ -93,9 +93,57 @@
       opacity: 0.9;
     }
 
+    /* SUPPORT CHAT WIDGET BOX */
+    .support-box {
+      background: #07111F;
+      border: 1px solid #203246;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+    .support-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .support-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #D4AF37;
+      font-size: 18px;
+    }
+    .support-info h3 { font-size: 14px; margin-bottom: 2px; color: #FFFFFF; }
+    .support-info p { color: #94a3b8; font-size: 12px; }
+    .btn-chat {
+      background: transparent;
+      color: #D4AF37;
+      border: 1px solid #D4AF37;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+    .btn-chat:hover { background: #D4AF37; color: #07111F; }
+
     .register-link {
       text-align: center;
-      margin-top: 22px;
+      margin-top: 20px;
       color: #B8C4D4;
     }
 
@@ -108,7 +156,7 @@
     .back-home {
       display: block;
       text-align: center;
-      margin-top: 18px;
+      margin-top: 15px;
       color: #B8C4D4;
       text-decoration: none;
       font-size: 14px;
@@ -152,6 +200,20 @@
       </button>
 
     </form>
+
+    <!-- LIVE SUPPORT MESSAGE WIDGET -->
+    <div class="support-box">
+      <div class="support-left">
+        <div class="support-icon-wrap">💬</div>
+        <div class="support-info">
+          <h3>Need Assistance?</h3>
+          <p>Chat with our team 24/7</p>
+        </div>
+      </div>
+      <button class="btn-chat" onclick="openLiveChat()">
+        💬 Live Chat
+      </button>
+    </div>
 
     <div class="register-link">
       Don't have an account?
@@ -199,6 +261,15 @@
 
       if (data.user) {
         window.location.href = "dashboard.html";
+      }
+    }
+
+    // Trigger Tawk.to Chat Widget open
+    function openLiveChat() {
+      if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+        Tawk_API.maximize();
+      } else {
+        alert("Live chat is loading. Please try again in a moment.");
       }
     }
   </script>
