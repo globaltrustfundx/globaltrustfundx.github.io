@@ -189,6 +189,54 @@
     .faq-item h3 { font-size: 18px; margin-bottom: 10px; color: #ffffff; }
     .faq-item p { color: #aeb9c9; font-size: 14px; }
 
+    /* SUPPORT CHAT WIDGET BOX */
+    .support-box-container { padding: 40px 0; background: #07111F; }
+    .support-box {
+      background: #0d1b2a;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .support-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .support-icon-wrap {
+      width: 50px;
+      height: 50px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #D4AF37;
+      font-size: 24px;
+    }
+    .support-info h3 { font-size: 16px; margin-bottom: 4px; color: #fff; }
+    .support-info p { color: #94a3b8; font-size: 13px; }
+    .btn-chat {
+      background: #D4AF37;
+      color: #07152d;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+    .btn-chat:hover { background: #f0cf62; transform: translateY(-2px); }
+
     /* CTA */
     .cta { text-align: center; background: radial-gradient(circle at center, #153163 0%, #07152d 80%); }
     .cta h2 { font-size: 40px; margin-bottom: 15px; }
@@ -423,6 +471,24 @@
     </div>
   </section>
 
+  <!-- LIVE SUPPORT MESSAGE WIDGET -->
+  <div class="support-box-container">
+    <div class="container">
+      <div class="support-box">
+        <div class="support-left">
+          <div class="support-icon-wrap">💬</div>
+          <div class="support-info">
+            <h3>Need Assistance?</h3>
+            <p>Chat with our institutional support team 24/7</p>
+          </div>
+        </div>
+        <button class="btn-chat" onclick="openLiveChat()">
+          💬 Live Chat
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <section class="cta">
     <div class="container">
@@ -494,6 +560,15 @@
     async function logout() {
       await supabaseClient.auth.signOut();
       window.location.reload();
+    }
+
+    // Trigger Tawk.to Chat Widget open
+    function openLiveChat() {
+      if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+        Tawk_API.maximize();
+      } else {
+        alert("Live chat is loading. Please try again in a moment.");
+      }
     }
 
     checkAuthNav();
